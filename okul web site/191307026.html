@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>191307026</title>
+
+    <!-- =============== Bootstrap Core CSS =============== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <!-- =============== Google fonts =============== -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,300" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">
+	<!-- =============== fonts awesome =============== -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <!-- =============== Plugin CSS =============== -->
+    <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+    <!-- =============== Custom CSS =============== -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- =============== Owl Carousel Assets =============== -->
+    <link href="owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="owl-carousel/owl.theme.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script>
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart1);
+		
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart2);
+		
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart3);
+		
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart4);
+		
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawChart5);
+
+	function drawChart1() 
+	{
+		var data = google.visualization.arrayToDataTable([
+			['öğrenci', 'sayısı'],
+			['doktora', 1333],
+			['yüksek lisans', 5082],
+			['ön lisans', 21104],
+			['lisans', 39731],
+		]);
+
+		var options = {
+			pieHole: 0.5,
+			pieSliceTextStyle: {
+				color: 'black',
+			},
+			legend: 'none',
+			is3D: true
+		};
+		var chart = new google.visualization.PieChart(document.getElementById('donut_ogrenci'));
+		chart.draw(data, options);	
+	}
+	function drawChart2() 
+	{
+		var data = google.visualization.arrayToDataTable([
+			['akademisyen', 'sayısı'],
+			['Profesör', 306],
+			['Doçent', 223],
+			['Dr. Öğr. Üyesi', 469],
+			['Öğretim Görevlisi', 463],
+			['Araştırma Görevlisi', 877],
+		]);
+		var options = {
+			pieHole: 0.5,
+			pieSliceTextStyle: {
+				color: 'black',
+			},
+			legend: 'none',
+			is3D: true
+		};
+		var chart = new google.visualization.PieChart(document.getElementById('donut_personel'));
+		chart.draw(data, options);
+	}
+		
+	function drawChart3() 
+	{
+		var data = google.visualization.arrayToDataTable([
+			['idari', 'sayısı'],
+			['İdari Personel(657)', 1558],
+			['4-B Sözleşmeli idari', 504],
+			['Sürekli İşçi', 1385],
+		]);
+		var options = {
+			pieHole: 0.5,
+			pieSliceTextStyle: {
+				color: 'black',
+			},
+			legend: 'none',
+			is3D: true
+		};
+		var chart = new google.visualization.PieChart(document.getElementById('donut_idari'));
+		chart.draw(data, options);
+	}
+		
+	function drawChart4() 
+	{
+		var data = google.visualization.arrayToDataTable([
+			['akedemik birim', 'sayısı'],
+			['Fakülte', 18],
+			['Meslek Yüksekokulu', 16],
+			['Yüksekokul', 3],
+			['Enstitü', 4],
+			['Araştırma Merkezi', 13],
+		]);
+		var options = {
+			pieHole: 0.5,
+			pieSliceTextStyle: {
+				color: 'black',
+			},
+			legend: 'none',
+			is3D: true
+		};
+		var chart = new google.visualization.PieChart(document.getElementById('donut_akedemik'));
+		chart.draw(data, options);
+	}
+	function drawChart5() 
+	{
+		var data = google.visualization.arrayToDataTable([
+			['kütüphane', 'sayısı'],
+			['Kitap (Basılı + Elektronik) Sayısı', 405983],
+			['Dergi (Basılı + Elektronik) Sayısı', 58250],
+			['Tez (Basılı + Elektronik) Sayısı', 2804744],
+		]);
+		var options = {
+			pieHole: 0.5,
+			pieSliceTextStyle: {
+				color: 'black',
+			},
+			legend: 'none',
+			is3D: true
+		};
+		var chart = new google.visualization.PieChart(document.getElementById('donut_kutuphane'));
+		chart.draw(data, options);
+	}
+	</script>
+	<style>
+		
+		.box1, .box3, .box2{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			flex-flow: wrap;
+			width: 100%;
+			height: auto;
+		}
+		
+		.box{
+			background-color:  wheat;
+			text-align: left;
+			color: #ff4c00;
+            width: 35%;
+			height: 100%;
+			border: 2px solid  #ff4c00;
+			padding-left: 30px;
+			margin: center;
+			position: relative;
+		}
+		.logo_yazisi{
+			display: block;
+			color: white;
+			margin-top: 50px;
+			margin-left: 100px;
+			font-size: 30px;
+		}
+		.slider {
+			margin-top: 180px;
+			display: none;
+			text-align: center;
+			
+			 position: relative;
+		}
+		.wrapper {
+		  padding-top: 150px;
+		  width: 80%;
+		  position: relative;
+		  margin: auto;
+		}
+		.prev, .next {
+		  cursor: pointer;
+		  position: absolute;
+		  top: 40%;
+		  width: auto;
+		  padding: 16px;
+		  margin-top: -10px;
+		  color: white;
+		  font-weight: bold;
+		  font-size: 18px;
+		  transition: 0.6s ease;
+		  border-radius: 0 3px 3px 0;
+		  user-select: none;
+		}
+		.next {
+		  right: 0;
+		  border-radius: 3px 0 0 3px;
+		}
+		.prev:hover, .next:hover {
+		  background-color: rgba(0,0,0,0.8);
+		}
+		#baglanti{
+			font-family:"Open Sans",sans-serif; 
+			display: flex;
+			list-style-type: none;
+			text-align: center;
+		    font-size: 24px;
+			margin:auto;
+			position: relative;
+		}
+		#baglanti a{
+			text-align: center;
+			margin: auto;
+			margin-left: 260px;
+			position: relative;
+		}
+		.table table{
+			font-family: arial, sans-serif;
+		    border-collapse: collapse;
+			color: black;
+			width: 1000px;
+			margin:auto;
+			text-transform: capitalize;
+			position: relative;
+		}
+		.table tr, .table td{
+		  border: 1px solid #ff4c00;
+		  text-align: center;
+		  padding: 8px;
+		  width:700px; 
+		  background-color: transparent;
+		  position: relative;
+		}
+		.table tr:nth-child(even) {
+		  background-color: transparent;
+		}
+		@media(max-width:700px;){
+			.table, .table tbody. .table tr, .table td{
+				display: block;
+				width: 100%;
+			}
+			.table tr{
+				margin-bottom: 15px;
+			}
+			.table td{
+				text-align: right;
+				padding-left: 50%;
+				text-align: right;
+				position: relative;
+			}
+		}
+		.bag table{
+		  font-family: arial, sans-serif;
+		  border-collapse:separate;
+		  width: 1000px;
+		  color: white;
+		  margin: auto;
+		  text-transform: capitalize;
+		  position: relative;
+		}
+		.bag tr, .bag td {
+		  border: 1px solid #ff4c00;
+		  text-align: center;
+		  padding: 8px;
+		  width: 500px; 
+		  background-color: transparent;
+		  position: relative;
+		}	
+		.bag tr:nth-child(even) {
+		  background-color: transparent;
+		}
+		@media(max-width:700px;){
+			.bag, .bag tbody. .bag tr, .bag td{
+				display: block;
+				width: 100%;
+			}
+			.bag tr{
+				margin-bottom: 15px;
+			}
+			.bag td{
+				text-align: right;
+				padding-left: 50%;
+				text-align: right;
+				position: relative;
+			}
+		}
+		.dot {
+		  z-index: 10;
+		  margin-top: 420px;
+		  cursor: pointer;
+		  height: 15px;
+		  width: 15px;
+		  margin: 0 2px;
+		  background-color: white;
+		  border-radius: 50%;
+		  display: inline-block;
+		  transition: background-color 0.6s ease;
+		}
+		.active, .dot:hover {
+		  background-color: #717171;
+		}
+		.fade {
+		  -webkit-animation-name: fade;
+		  -webkit-animation-duration: 1.5s;
+		  animation-name: fade;
+		  animation-duration: 1.5s;
+		}
+		@-webkit-keyframes fade {
+		  from {opacity: .4} 
+		  to {opacity: 1}
+		}
+		@keyframes fade {
+		  from {opacity: .4} 
+		  to {opacity: 1}
+		}
+		@media only screen and (max-width: 300px) {
+		  .prev, .next {font-size: 11px}
+		}
+		#hakki{
+			text-align: center;
+			color: black;
+		}
+		#doktora, #yukseklisans, #lisans, #onlisans ,#profesor, #docent, #ogrenimuyesi, #ogretimgorevlisi, #arastirma, #personel, #surekli, #sozlesmeli, #fakulte, #meslek, #yuksek, #enstitu, #merkez, #kitap, #dergi, #tez{
+			width: 500px;
+			height: 25px;
+			z-index: 99;
+		}
+	</style>
+</head>
+
+<body>
+    <!-- =============== Preloader =============== -->
+    <div id="preloader">
+        <div id="loading">
+        </div>
+    </div>
+    <!-- =============== nav =============== -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+						<img src="img/logo.png" alt="">
+                    </a>
+                </div>
+				<div class="logo_yazisi">
+					<p>Bilişim Sistemleri Mühendisliği</p>
+				</div>
+				
+                <!-- Collect the nav links, forms, and other content for toggling -->
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="#about">Üniversitemiz</a>
+							<ul>
+								<li>
+									<a>kurumsal</a>
+								</li>
+								<li>
+									<a>birimler</a>
+								</li>
+								<li>
+									<a>başkanlıklar</a>
+								</li>
+								<li>
+									<a>kurullar</a>
+								</li>
+								<li>
+									<a>bağlantılar</a>
+								</li>
+								<li>
+									<a>ilanlar</a>
+								</li>
+							</ul>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#how-it-works">Akademik</a>
+							<ul>
+								<li>
+									<a>fakülteler</a>
+								</li>
+								<li>
+									<a>enstitüler</a>
+								</li>
+								<li>
+									<a>yüksekokullar</a>
+								</li>
+								<li>
+									<a>konservatuarlar</a>
+								</li>
+								<li>
+									<a>meslek yüksekokulları</a>
+								</li>
+								<li>
+									<a>rektörlüğe bağlı bölümler</a>
+								</li>
+							</ul>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#Screenshots">Sayılarla KOÜ</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#Price">Yönetmelikler</a>
+							<ul>
+								<li>
+									<a>genel</a>
+								</li>
+								<li>
+									<a>bilgi sistemi</a>
+								</li>
+								<li>
+									<a>etkinlik</a>
+								</li>
+								<li>
+									<a>yabancı öğrenci</a>
+								</li>
+							</ul>
+                        </li>
+						<li>
+							<a class="page-scroll" href="#contact">İletişim</a>
+							
+						</li>
+                    </ul>
+                </div>
+                <!-- =============== navbar-collapse =============== -->
+            </div>
+        </div>
+        <!-- =============== container-fluid =============== -->
+    </nav>
+    <!-- =============== header =============== -->
+	
+    <header>
+		
+		<!-- =============== slider =============== -->
+		<div id="wrapper">
+			<div class="slider">	
+    			<img src="img/slider_1.jpg" alt="" width="1500" height="500">
+			</div>
+			<div class="slider">
+    			<img src="img/slider_2.jpg" alt="" width="1500" height="500">
+			</div>
+			<div class="slider">
+    			<img src="img/slider_3.jpg" alt="" width="1500" height="500"> 
+			</div>
+			<div class="slider">
+    			<img src="img/slider_4.jpg" alt="" width="1500" height="500"> 
+			</div>
+			<div class="slider">
+    			<img src="img/slider_5.jpg" alt="" width="1500" height="500">  
+			</div>
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+		<div style="text-align:center">
+			  <span class="dot" onclick="currentSlide(1)"></span>
+			  <span class="dot" onclick="currentSlide(2)"></span>
+			  <span class="dot" onclick="currentSlide(3)"></span>
+			  <span class="dot" onclick="currentSlide(4)"></span>
+			  <span class="dot" onclick="currentSlide(5)"></span>
+		</div>
+		<br>
+		<h1 style="text-align: center">Bağlantılar</h1>
+		<ul id ="baglanti">
+			<li>
+				<a>Genel</a>
+			</li>
+			<li>
+				<a>Bağlantılar</a>
+			</li>
+			<li>
+				<a>Eğitim/İşbirlikleri</a>
+			</li>
+			<li>
+				<a>Uluslararası</a>
+			</li>
+		</ul>	
+		<hr style="background-color:#ff4c00">
+		<table class="bag">
+			<tbody>
+				<tr>
+					<td><a href="http://bap.kocaeli.edu.tr/" target="_blank">BAP Koordinasyon Birimi</a></td>
+					<td><a href="https://avesis.kocaeli.edu.tr/" target="_blank">Akademik veri Yönetim Sistemi</a></td>
+					<td><a href="http://dspace.kocaeli.edu.tr:8080/xmlui/" target="_blank">Akademik açık Erişim</a></td>
+					<td><a href="http://int.kocaeli.edu.tr/de/" target="_blank">Diploma Eki (DE)</a></td>
+				</tr>
+				<tr>
+					<td><a href="http://bhi.kocaeli.edu.tr/e-gazete.htm" target="_blank">E-Gazate</a></td>
+					<td><a href="http://laboratuar.kocaeli.edu.tr/" target="_blank">AR-Ge Laboratuar B.B.</a></td>
+					<td><a href="https://ogr.kocaeli.edu.tr/koubs/bologna/index.cfm?Dilid=C5A2AAA1F96253BA3C472E26057B495E&CFID=2869926&CFTOKEN=3f61e733dd7205ae-18D108D2-B9CF-86A5-2D100479E50B337D" target="_blank">Eğitimde Yeniden Yapılanma</a></td>
+					<td><a href="http://ects.kocaeli.edu.tr/index.cfm?Dilid=0&CFID=2638269&CFTOKEN=3a1757dc5b950d83-C64E11C9-A5C6-9A56-C3BFE48E16C30ACD" target="_blank">ECTS Info Package</a></td>
+				</tr>
+				<tr>
+					<td><a href="http://engelsiz.kocaeli.edu.tr/" target="_blank">Engelsiz Üniversite</a></td>
+					<td><a href="https://www.kartepeparkotel.com.tr/" target="_blank">Kartepe Park Otel</a></td>
+					<td><a href="http://www.kocaeli.edu.tr/genel/farabi.php" target="_blank">Farabi Değişim Programı</a></td>
+					<td><a href="http://www.kocaeli.edu.tr/int-student.php" target="_blank">international students (info)</a></td>
+				</tr>
+				<tr>
+					<td><a href="http://kalite.kocaeli.edu.tr/" target="_blank">kalite koordinasyon ekibi</a></td>
+					<td><a href="https://www.kouvakif.org.tr/" target="_blank">kocaeli üniversitesi vakfı</a></td>
+					<td><a href="http://kulturevi.kocaeli.edu.tr/" target="_blank">kültür evi</a></td>
+					<td><a href="http://int.kocaeli.edu.tr/" target="_blank">uluslar arası ilişkiler birimi</a></td>
+				</tr>
+				<tr>
+					<td><a href="https://koukybs.kocaeli.edu.tr/kalite/login.cfm?logout=yes" target="_blank">kalite yönetim bilgi sistemi</a></td>
+					<td><a href="http://mbs.kocaeli.edu.tr/" target="_blank">mezun bilgi sistemi</a></td>
+					<td><a href="http://www.kocaeli.edu.tr/genel/mevlana.php" target="_blank">mevlana değişim programı</a></td>
+					<td><a href="http://yos.kocaeli.edu.tr/" target="_blank">yabancı uyruklu öğrenciler</a></td>
+				</tr>
+				<tr>
+					<td><a href="http://kys.kocaeli.edu.tr/" target="_blank">KYS-Talep yönetim sistemi</a></td>
+					<td><a href="http://sksdb.kocaeli.edu.tr/" target="_blank">sosyal ve spor tesislerimiz</a></td>
+					<td><a href="http://sem.kocaeli.edu.tr/" target="_blank">sürekli eğitim merkezi</a></td>
+				</tr>
+				<tr>
+					<td><a href="http://radyoki.kocaeli.edu.tr/" target="_blank">raoyo ki</a></td>
+					<td><a href="http://koutto.com/" target="_blank">KOÜ teknoloji transfer ofisi A.Ş</a></td>
+					<td><a href="http://uzem.kocaeli.edu.tr/uzemweb/" target="_blank">uzem</a></td>
+				</tr>
+				<tr>
+					<td><a href="https://www.youtube.com/watch?v=l5abX99mz0A" target="_blank">sanal tur</a></td>
+					<td><a href="https://kouteknopark.com/" target="_blank">teknopark</a></td>
+					<td><a href="" target="_blank">uygulama anaokulu</a></td>
+				</tr>
+				<tr>
+					<td><a href="http://www.kocaeli.edu.tr/telefon-rehberi.php" target="_blank">telefon rehberi</a></td>
+					<td><a href="http://okuk.kocaeli.edu.tr/" target="_blank">öğrenci klüpleri</a></td>
+					<td><a href="http://www.kocaeli.edu.tr/genel/unikent.php" target="_blank">ünikent</a></td>
+				</tr>
+			</tbody>
+			
+		</table>
+		 <!-- =============== slider end =============== -->
+    </header>
+	
+	
+    <!-- =============== About =============== -->
+    <section id="about" class="">
+		<!-- =============== container =============== -->
+		<h1 id="hakki">HAKKIMIZDA</h1>
+		<br><br><br>
+        <div class="container">
+            <span class="angle"></span>
+            <span class="angle2"></span>
+            <div class="row">
+                	<div class="col-xs-12 col-sm-5 col-md-3 wow fadeInLeft animated" data-wow-delay=".5s">
+                    	<h2><span>ÇEYREK ASIRLIK BİLİM YUVASI</span></h2>      
+                  	</div>
+                  	<div class="col-xs-12 col-sm-7 col-md-9 wow fadeInRight animated" data-wow-delay=".5s">
+                  		<p>1992 yılında 6 fakülte, 1 meslek yüksekokulu, 3 enstitü ile kurulan Kocaeli Üniversitesi ülkemizin önde gelen bilim ve eğitim merkezlerinden birisidir. Üniversitemizin kuruluşunun 25.yılını kutladığımız bu günlerde ülkemizin gelişimine ve bilime yaptığımız katkının haklı gururunu yaşamaktayız.</p>
+						<p>Farklı düşünme yolları geliştiren, alternatif bakış açıları üreten, okuyan, araştıran ve entelektüel sermayesini her gün arttırarak milleti için kullanan nesiller yetiştirmekteyiz. Bu sebeple diyoruz ki: “Türkiyemiz için eğitiyor, araştırıyor ve üretiyoruz.”</p>
+                    </div>  
+				    <br><br><br><br><br><br><br><br>
+				
+				    <div class="col-xs-12 col-sm-5 col-md-3 wow fadeInLeft animated" data-wow-delay=".5s">
+                    	<h2><span>MUHTEŞEM BİR YERLEŞKE</span></h2>      
+                  	</div>
+                  	<div class="col-xs-12 col-sm-7 col-md-9 wow fadeInRight animated" data-wow-delay=".5s">
+                  		<p>17 Ağustos 1999 tarihi gerek ülkemiz gerekse üniversitemiz açısından büyük kayıpların yaşandığı acı bir tarih. Marmara depreminin etkisiyle oluşan bu büyük yıkım üniversitemizin %75 inin yok olmasına sebep olmuştur, ancak Üniversitemiz gücüyle bu büyük yarayı hızla sarmış bugünkü modern ve her açıdan gelişmiş kampüsüne kavuşmuştur.</p>
+						<p>Türkiyenin ilk projelendirilmiş yerleşkesi olan Umuttepe Yerleşkesi Türkiye’nin ve dünyanın sayılı kampüslerindendir. Doğanın merkezinde, şehrin gürültüsünden uzak, ferah havası ile özel bir konumu olan yerleşkemiz 6500 dönümlük alanda; spor tesisleri, araştırma ve uygulama hastanesi, modern eğitim kurumları ve sosyal alanları ile gurur verici bir tesis kimliğindedir.</p>
+                    </div> 
+				    <br><br><br><br><br><br><br><br>
+				
+				    <div class="col-xs-12 col-sm-5 col-md-3 wow fadeInLeft animated" data-wow-delay=".5s">
+                    	<h2><span>BUGÜN KOCAELİ ÜNİVERSİTESİ</span></h2>      
+                  	</div>
+                  	<div class="col-xs-12 col-sm-7 col-md-9 wow fadeInRight animated" data-wow-delay=".5s">
+                  		<p>19 Fakülte, 1 Yüksekokul, 21 Meslek Yüksekokulu, 1 Devlet Konservatuvarı ile hizmet veren dev bir eğitim kurumudur.</p>
+						<p>81.000’in üzerinden öğrencisi ile her sene ülkemize yetişmiş bireyler kazandıran üniversitemiz, 15 Araştırma ve Uygulama Merkezi, 28 Araştırma ve Uygulama Birimi ile ülkemizin araştırma-geliştirme (AR-GE) Faaliyetleri içinde önemli bir konuma sahiptir.</p>
+						<p>91 Öğrenci Kulübü ve Topluluğu ile öğrenci etkinlikleri arasında ilk sırada yer alarak, kulüpleri aracılığı ile toplumsal sorumluluk faaliyetlerine, sosyal ve kültürel etkinliklere imza atmaktadır.</p>
+                    </div> 
+				    <br><br><br><br><br><br><br><br>
+				
+				    <div class="col-xs-12 col-sm-5 col-md-3 wow fadeInLeft animated" data-wow-delay=".5s">
+                    	<h2><span>BİR DÜNYA ÜNİVERSİTESİ</span></h2>      
+                  	</div>
+                  	<div class="col-xs-12 col-sm-7 col-md-9 wow fadeInRight animated" data-wow-delay=".5s">
+                  		<p>Uluslararası sınır çizgilerinin giderek belirsizleştiği ve hızla küreselleşen dünyada bilim insanı yetiştiren ve bilim üreten üniversitelerin de evrensel olması gerekmektedir. Bu nedenle üniversite olarak uluslararasılaşma çalışmalarına önem veriyoruz.</p>
+						<p>Üniversitemiz bünyesinde yer alan uluslararası ilişkiler birimimizin yapmış olduğu ikili anlaşmalar ve dahil olduğu programlarla uluslararasılaşma hedefimize her geçen gün daha da yaklaşmaktayız.</p>
+						<p>Üniversitemizin öğrencilerini yurtdışında bir çok ülkeye gönderdiğimiz gibi dünyanın farklı coğrafyalarından gelen öğrencilere de ev sahipliği yapmaktayız. Farklı Programlar aracılığı ile çok sayıda öğrencimize yurtdışında okuma imkanı sağlanmaktadır.</p>
+						<p><strong>Erasmus Programı:</strong> 24 ülkeden 168 üniversite ile 66 bölümde 280 anlaşma yapılmıştır. Bu çevrede 280 öğrencimiz anlaşmalı üniversitelere gitmiş, çok sayıda öğrenci üniversitemize gelmiştir. Ayrıca 2017 yılı itibari ile 24 farklı ülkeye 328 öğrencimizin eğitim ve staj maksadı ile gönderilmesi planlanmaktadır</p>
+						<p><strong>Farabi Programı:</strong> Yüksek Öğretim Kurumları arasında, öğrenci ve öğretim üyesi değişim programıdır. Erasmus ile benzerlik gösteren Farabi, ulusal sınırlar içinde yer alan yüksek öğretim kurumları arasındaki değişimi hedeflemektedir. Bu program kapsamında şu ana kadar 354 öğrenci üniversitemize gelmiş, 202 öğrencimiz de başka üniversitelere gitmiştir.</p>
+						<p><strong>Mevlana Programı:</strong> Yurtiçinde eğitim veren yükseköğretim kurumları ile yurtdışında eğitim veren yükseköğretim kurumları arasında öğrenci ve öğretim elemanı değişimini gerçekleştirmeyi amaçlayan bir programdır. Bu program kapsamında şu ana kadar 5 üniversite ile anlaşma imzalanmış olup, çalışmaları devam etmektedir.</p>
+						<p>Son iki yılda yabancı öğrenci sınavını kendisi gerçekleştiren üniversitemiz dünyanın her ülkesinden 1500’ün üzerinde öğrenciye eğitim vermektedir. Önümüzdeki yıllarda üniversitemize yurtdışından eğitim için gelen öğrenci sayısının 5000 seviyesine ulaşması planlanmaktadır.</p>
+                    </div> 
+            </div>
+        </div>   
+		<!-- =============== container end =============== -->		
+    </section>
+    <!-- =============== how it works =============== -->
+    <section id="how-it-works" class="parallax">
+	<!-- =============== container =============== -->
+    <div class="container">
+    <span class="angle2"></span>
+    <span class="angle"></span>
+    <div class="row">
+
+       <div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated headding" data-wow-delay=".5s">
+           <h2>Fakültelerimiz</h2>          
+       </div>
+
+       	<div class="col-xs-12 col-sm-4 col-md-4">
+         	<div class="row">     
+          		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright" data-wow-delay=".5s">
+            		<h3>Teknoloji Fakültesi</h3>
+              		<p>Kocaeli Üniversitesi Teknoloji Fakültesi 13.11.2009 tarih ve 27405 sayılı Resmi Gazetede yayımlanan Bakanlar Kurulu kararı ile kurulmuştur. Fakültemiz sahip olduğu öğretim ve araştırma imkânları ile öğrencilerini eğitim aldıkları mühendislik disiplinlerinde uygulama kabiliyeti yüksek, üretimde etkin mühendisler olarak yetiştirmeyi hedeflemektedir.</p>     
+          		</div>
+        	</div>
+        	<div class="row"> 
+         		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright" data-wow-delay=".6s">
+            		<h3>Eğitim Fakültesi</h3>
+              		<p>Kocaeli Üniversitesi Eğitim Fakültesi, 1999’da Anıtpark Yerleşkesi’nde kurulmuş ve eğitim öğretim faaliyetine başlamıştır. Deprem sonrası yeniden inşa edilen Umuttepe Yerleşkesi’ndeki yeni binasına Eylül 2005 tarihinde taşınmıştır. 2015-2016 Eğitim Öğretim Yılı itibariyle lisans düzeyinde 2212, yüksek lisans düzeyinde 382, doktora düzeyinde 13 öğrencisi, 81 akademik ve 13 idari personeli vardır.</p>     
+          		</div>
+       		 </div>
+        	<div class="row">            
+         		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright" data-wow-delay=".7s">
+            		<h3>İletişim Fakültesi</h3>
+              		<p>Kocaeli Üniversitesi İletişim Fakültesi, Tıp Fakültesi öğretim üyelerinden Ertuğrul Köroğlu’nun kurucu dekanlığında 1998 yılında Halkla İlişkiler ve Tanıtım, Gazetecilik ve Radyo Televizyon Sinema bölümleri ile Anıtpark Yerleşkesi’nde eğitim- öğretim hayatına 81 öğrenci ile başladı. 17 Ağustos Depremi sonrasında Hereke Yerleşkesinde eğitim-öğretime devam fakültemiz, 2002-2003 eğitim öğretim yılında ikinci öğretim öğrencilerine de kapılarını açtı. Görsel İletişim Tasarımı ile Reklamcılık Bölümleri ise ilk öğrencilerini 2005 yılında kabul ettiler.</p>     
+          		</div> 
+        	</div>        
+      	</div>  
+      	<div class="col-xs-12 col-sm-4 col-md-4">
+        	 <div class="row">    
+          		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInRight animated textleft" data-wow-delay=".5s">
+            		<h3>Mühendislik Fakültesi</h3>
+              		<p>1976 yılında Kocaeli Devlet Mühendislik ve Mimarlık Akademisi adı altında Elektrik ve Makine Fakülteleri, Temel Bilimler Fakülteleri ve Yabancı Diller Enstitüsü kuruldu. Akademi, bugünkü Anıtpark'ın batısında bulunan İzmit Ticaret Lisesi ön binasında eğitimine başlamıştır.</p> 
+					<p>2547 sayılı yasanın yürürlüğe girmesiyle Akademiler kapatılarak üniversitelere bağlandı. Bu kapsamda Kocaeli DMMA, 20 Temmuz 1982'de Kocaeli Mühendislik Fakültesi adı altında Yıldız Teknik Üniversitesi'ne bağlandı.</p>
+          		</div>
+        	</div>
+        	<div class="row">        
+          		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInRight animated textleft" data-wow-delay=".6s">
+            		<h3>Fen Edebiyat Fakültesi</h3>
+              		<p>Fakültemiz, 3 Temmuz 1992 tarih ve 3837 sayılı kanun ile kurulmuş ve 28.02.1993 tarihinde faaliyete geçmiştir. Üniversitenin Anıtpark yerleşkesindeki bir lise binasında hizmete başlayan fakültemizde ilk olarak Matematik,  Fizik,  Kimya bölümlerine öğrenci alınımına başlanmıştır.  Daha sonra sırası ile Türk Dili ve Edebiyatı, Batı Dilleri ve Edebiyatları, Felsefe, Biyoloji, Arkeoloji ve Tarih bölümleri açılmıştır. Şubat 2004 tarihinden bu yana Fen Edebiyat Fakültesi Kocaeli Üniversitesinin Umuttepe yerleşkesindeki modern binalarında hizmet vermektedir.</p>     
+          		</div>
+          
+        	</div>
+        	<div class="row">          
+         	 	<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInRight animated textleft" data-wow-delay=".7s">
+            		<h3>Tıp Fakültesi</h3>
+              		<p>Mezuniyet öncesi tıp eğitiminde akredite olmuş eğitim standardımızı, tıp eğitimindeki çağdaş yaklaşımlar ışığında daha da geliştirerek, güncel tıp bilgisi ile donanmış, ülkemizde sık görülen hastalıkları iyi bilen, problem çözme, kendi kendine öğrenme ve iletişim becerisine sahip, önceliği her durumda hastalarına hizmet olarak gören hekimler yetiştirmek</p>     
+          		</div>
+       		 </div>        
+    	</div>
+		<div class="col-xs-12 col-sm-4 col-md-4">
+         	<div class="row">     
+          		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright" data-wow-delay=".5s">
+            		<h3>Mimarlık ve Tasarım Fakültesi</h3>
+              		<p>Kocaeli Üniversitesi Mimarlık ve Tasarım Fakültesi Mimarlık, İç Mimarlık, Şehir ve Bölge Planlama ve Endüstriyel Tasarım bölümleri olarak 22.04.2006 tarihinde kurulmuştur.</p>
+					<p>Mimarlık Bölümünde lisans, yüksek lisans ve doktora programları, İç Mimarlık Bölümünde ise lisans ve yüksek lisans programı için öğrenci kabul etmektedir. En kısa süre içinde Şehir ve Bölge Planlama Bölümü ve bir sonraki aşamada da Endüstriyel Tasarım Bölümleri aktif hale gelerek öğrenci kabulüne başlayacaklardır.</p>     
+          		</div>
+        	</div>
+        	<div class="row"> 
+         		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright" data-wow-delay=".6s">
+            		<h3>Diş Hekimliği Fakültesi</h3>
+              		<p>Kocaeli Üniversitesi Diş Hekimliği Fakültesi, Milli Eğitim Bakanlığı'nın 12.05.2008 Tarih ve 10475 sayılı yazısı üzerine, 28.03.1983 tarih ve 2809 sayılı Kanunun ek 30'uncu maddesi uyarınca, Bakanlar Kurulu'nun 17.05.2006 tarihli toplantısında alınan karar ile kurulmuştur.</p>
+					<p>Fakültemiz, Kocaeli Üniversitesi Rektörlüğü ile Kocaeli İl Özel İdaresi arasında, 17.04.2008 tarihinde imzalanan protokol gereği Yuvacık’ta bulunan Paşadağı mevkiinde 54.000 m² arazi üzerinde 8.200 m² kapalı alana sahiptir. 1 profesör ve 4 yardımcı doçentten oluşan öğretim üyesi kadrosu ile 2008-2009 Eğitim-Öğretim yılına 25 öğrenci ile eğitime başlamıştır. 25.05.2009 tarihinde 6 diş üniti ile klinik hizmetleri faaliyetine geçilmiştir.</p>     
+          		</div>
+       		 </div>
+        	<div class="row">            
+         		<div class="col-xs-10 col-sm-10 col-md-10 wow fadeInLeft animated textright" data-wow-delay=".7s">
+            		<h3>Güzel Sanatlar Fakültesi</h3>
+              		<p>1992'de kurulan Kocaeli Üniversitesinin sanatla ilişkili ilk akademik birimi, Rektörlüğe bağlı olarak 1993'te Anıtpark Yerleşkesi’nde faaliyete geçirilen “Güzel Sanatlar Bölümü” olmuştur. Resim, müzik, heykel, grafik, sinema, sahne tasarımı ve sanat tarihi alanlarından öğretim görevlileri Güzel Sanatlar Fakültesi kuruluncaya kadar bu bölümde hizmet vermişlerdir. Bölüm, o dönemde Kocaeli Üniversitesinin lisans programlarında seçmeli olarak açılan Resim ve Müzik gibi sanat derslerini ve Sanat Tarihi zorunlu dersini yürütmenin yanı sıra, üniversitenin kültür sanat faaliyetlerini düzenleme işlevini de görmüştür.</p>     
+          		</div> 
+        	</div>        
+      </div>  
+    </div>
+    </div>   
+		<br><br><br><br><br><br><br>
+	<!-- =============== container end =============== -->	
+    </section>
+    <!-- =============== Screenshots =============== -->
+    <section id="Screenshots" class="">
+	<!-- =============== container =============== -->
+    <div class="container">
+    <span class="angle2"></span>
+    <span class="angle"></span>
+    <div class="row">
+       <div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated headding" data-wow-delay=".1s">
+		   <h2>Sayılarla Başarımız</h2>
+	   </div>      
+    </div>      
+	</div>
+		
+	<div class="box1" >
+		<div class="box" >
+			<h2>Öğrenci Sayısı</h2>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".2s">
+				<label>Doktora:</label>       
+				<div class="w3-blue" style="text-align:center;height:24px;width:2%">%2</div>	
+				<label>Yüksek Lisans:</label>
+				<div class="w3-red" style="height:24px;width:8%">%7,6</div>
+				<label>Ön Lisans:</label>
+				<div class="w3-yellow" style="height:24px;width:30%">%31,4</div>
+				<label>Lisans:</label>
+				<div class="w3-green" style="height:24px;width:60%">%59,1</div>
+			</div>	
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".5s" >
+				<div id="donut_ogrenci" style="width: 50%; height: 100%; margin:auto;"></div>
+				<br><br><br><br>
+			</div>
+		</div>
+	    <br>
+		<div class="box">
+			<h2>Akademisyen Personel Sayısı</h2>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".3s">
+				<label for="disk_d">Profesör:</label>
+				<div class="w3-blue" style="height:24px;width:14%">%13,1</div>
+				<label for="disk_d">Docent:</label>
+				<div class="w3-red" style="height:24px;width:10%">%9,5</div>
+				<label for="disk_d">Dr. Öğr. Üyesi:</label>
+				<div class="w3-yellow" style="height:24px;width:20%">%20,1</div>	
+				<label for="disk_d">Öğretim Görevlisi:</label>
+				<div class="w3-green" style="height:24px;width:20%">%19,8</div>
+				<label for="disk_d">Araştırma Görevlisi:</label>
+				<div class="w3-purple" style="height:24px;width:36%">%37,5</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".5s">
+				<div id="donut_personel" style="width:50%; height: 100%; margin:auto;"></div>
+				<br><br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="box2">
+		<div class="box">
+			<h2>İdari Personel Sayısı</h2>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".3s">
+				<label for="disk_d">İdari Personel(657):</label>
+				<div class="w3-blue" style="height:24px;width:45%">%45,2</div>
+				<label for="disk_d">4-B Sözleşmeli idari:</label>
+				<div class="w3-red" style="height:24px;width:15%">%14,6</div>
+				<label for="disk_d">Sürekli İşçi:</label>
+				<div class="w3-yellow" style="height:24px;width:40%">%40,2</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".5s">
+				<div id="donut_idari" style="width: 50%; height: 100%; margin:auto;"></div>
+				<br><br><br><br><br><br><br>
+			</div>
+		</div>
+		<br>
+		<div class="box">
+			<h2>Akademik Birim Sayıları</h2>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".3s">
+				<label for="disk_d">Fakülte:</label>
+				<div class="w3-blue" style="height:24px;width:34%">%33,3</div>
+				<label for="disk_d">Meslek Yüksekokulu:</label>
+				<div class="w3-red" style="height:24px;width:30%">%29,6</div>
+				<label for="disk_d">Yüksekokul:</label>
+				<div class="w3-yellow" style="height:24px;width:5%">%5,6</div>
+				<label for="disk_d">Enstitü:</label>
+				<div class="w3-green" style="height:24px;width:7%">%7,4</div>
+				<label for="disk_d">Araştırma Merkezi:</label>
+				<div class="w3-purple" style="height:24px;width:25%">%24,1</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".5s">
+				<div id="donut_akedemik" style="width: 50%; height: 100%; margin:auto;"></div>
+				<br><br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="box3">
+		<div class="box">
+			<h2>Kütüphane</h2>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".3s">
+				<label for="disk_d">Kitap (Basılı + Elektronik) Sayısı:</label>
+				<div class="w3-blue" style="height:24px;width:12%">%12,4</div>
+				<label for="disk_d">Dergi (Basılı + Elektronik) Sayısı:</label>
+				<div class="w3-red" style="height:24px;width:3%">%1,8</div>
+				<label for="disk_d">Tez (Basılı + Elektronik) Sayısı:</label>
+				<div class="w3-yellow" style="height:24px;width:85%">%85,8</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated textleft" data-wow-delay=".5s">
+				<div id="donut_kutuphane" style="width: 50%; height: 100%; margin:auto;"></div>
+				<br><br><br><br><br><br>
+			</div>
+		</div>
+	</div>
+	<br><br><br><br>
+	</section>
+
+    <section id="Price" class="">
+	<!-- =============== container =============== -->
+    <div class="container">
+    <span class="angle2"></span>
+    <span class="angle"></span>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 wow zoomIn animated headding" data-wow-delay=".1s">
+           	<h2>Yönetmelikler</h2>
+			<table id="table">
+				<tbody>
+					<tr>
+					<td>Yükseköğretim Kurumlarında Önlisans ve Lisans Düzeyindeki Programlar Arasında Geçiş, Çift Anadal, Yan Dal ile Kurumlar Arası Kredi Transferi Yapılması Esaslarına İlişkin Yönetmelik</td>
+					<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+					<tr>
+						<td>YÖK Lisansüstü Eğitim ve Öğretim Yönetmeliği- Resmî Gazete Tarihi: 18.05.2021 Resmî Gazete Sayısı: 29690	</td>
+						<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+					<tr>
+						<td>Kocaeli Üniversitesi Lisansüstü Eğitim ve Öğretim Yönetmeliği-Resmi Gazete Tarihi 23.09.2018 Resmi Gazete Sayısı 30544	</td>
+						<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+					<tr>
+						<td>Kocaeli Üniversitesi Ön Lisans ve Lisans Eğitim-Öğretim Yönetmeliği-Resmi Gazete 9.10.2019 Resmi Gazete Sayısı 30913	</td>
+						<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+					<tr>
+						<td>Kocaeli Üniversitesi Önlisans ve Lisans Öğrencileri İçin Başarı Notunun Değerlendirmesine İlişkin Usul ve Esaslar	</td>
+						<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+					<tr>
+						<td>Kocaeli Üniversitesi Öğrenci Danışmanlık Hizmetleri Yönergesi	</td>
+						<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+					<tr>
+						<td >Azami Öğrenim Süresi Sonunda Mezun Olamayan Öğrenciler İçin 6569 Sayılı Kanunun 28. Maddesine İlişkin Uygulama Esasları-Resmi Gazete Tarihi 26.11.2014 Resmi Gazete Sayısı 29187	</td>
+						<td><img src="img/pdf.png" alt="" height="100px" width="100px"></td>
+					</tr>
+				</tbody>
+			</table>
+       	</div>
+	</div>
+	</div>   
+	<!-- =============== container end =============== -->  
+	</section>
+    <!-- =============== Contact =============== -->
+    <section id="contact">
+	<!-- =============== container =============== -->
+		<div class="container">
+			    <div class="row">
+                 <div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated headding" data-wow-delay=".1s">
+					 <h2>İletişime Geçin</h2>
+               </div>
+			</div>
+			<br><br><br><br>
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".1s">
+					<form>
+						<div class="ajax-hidden">
+							<div class="form-group wow fadeInUp animated">
+								<label for="c_name" class="sr-only">isim</label>
+								<input type="text" placeholder="İsim" name="c_name" class="form-control" id="c_name">
+							</div>
+							<div data-wow-delay=".1s" class="form-group wow fadeInUp animated">
+								<label for="c_email" class="sr-only">Email</label>
+								<input type="email" placeholder="E-mail" name="c_email" class="form-control" id="c_email">
+							</div>
+
+							<div data-wow-delay=".2s" class="form-group wow fadeInUp animated">
+								<textarea placeholder="Mesaj" rows="7" name="c_message" id="c_message" class="form-control"></textarea>
+							</div>
+							<button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="submit">Mesaj Gönder</button>
+						</div>
+						<div class="ajax-response"></div>
+					</form>
+
+				</div>
+                <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated map" data-wow-delay=".5s">
+
+					  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29573.317327024037!2d29.92704407470563!3d40.8055824224273!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cb5badf629fe45%3A0xc81fa849234e8755!2sKocaeli%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1638993938807!5m2!1str!2str" width="400" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+				</div>
+                 <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".6s">
+<br><br><br><br><br><br><br><br>
+					  <section style="margin-left: 50px" id="text-15" class="widget widget_text">
+                         <h3 class="widget-title">İzmit, Kocaeli</h3> 
+						 <div class="textwidget">Kabaoğlu, Baki Komsuoğlu bulvarı No:515, Umuttepe, 41001 İzmit/Kocaeli
+							 <br><br>
+							 <p>
+								 Tel: +902623031000
+								 <br><br>
+								 E-mail: 
+								 <a href="mailto: onurakyildiz41@gmail.com">onurakyildiz41@gmail.com</a>
+							 </p>
+						 </div>
+                    </section>
+
+				</div>                
+			</div>
+		</div><!-- =============== container end =============== -->
+	</section>
+    <!-- Footer -->
+    <footer id="footer">
+	<!-- =============== container =============== -->
+    <div class="container">
+			    <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+
+					<ul class="social-links">
+						<li>
+							<a class="wow fadeInUp animated" href="https://www.facebook.com/kou92official" style="visibility: visible; animation-name: fadeInUp;" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a data-wow-delay=".1s" class="wow fadeInUp animated" href="https://twitter.com/kou92official" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;" target="_blank">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a data-wow-delay=".2s" class="wow fadeInUp animated" href="https://plus.google.com/+kocaeli%C3%BCniversitesi" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" target="_blank">
+								<i class="fa fa-google-plus"></i>
+							</a>
+						</li>
+						<li>
+							<a data-wow-delay=".4s" class="wow fadeInUp animated" href="https://www.instagram.com/kou92official/" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;" target="_blank">
+								<i class="fa fa-instagram"></i>
+							</a>
+						</li>
+						<li>
+							<a data-wow-delay=".5s" class="wow fadeInUp animated" href="https://www.youtube.com/c/kocaeli%C3%BCniversitesi" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;" target="_blank">
+								<i class="fa fa-youtube"></i>
+							</a>
+						</li>
+					</ul>
+
+                    <p class="copyright">
+                        &copy; 2019 Kocaeli Üniversitesi. Bütün hakları saklıdır
+					</p>
+
+				</div>
+			</div>
+    </div><!-- =============== container end =============== -->
+	</footer>
+    <!-- =============== jQuery =============== -->
+    <script src="js/jquery.js"></script>
+    <!-- =============== Bootstrap Core JavaScript =============== -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- =============== Plugin JavaScript =============== -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+    <!-- =============== Custom Theme JavaScript =============== -->
+    <script src="js/creative.js"></script>
+    <!-- =============== owl carousel =============== -->
+	
+    <script src="owl-carousel/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                autoPlay: 3000,
+                items: 3,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3]
+            });
+
+        });
+		
+		var slideIndex = 1;
+		var slideNumber= 0;
+		slideGec();
+		showSlides(slideIndex);
+
+		function plusSlides(n) {
+		  showSlides(slideIndex += n);
+		}
+
+		function currentSlide(n) {
+		  showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+		  var i;
+		  var slides = document.getElementsByClassName("slider");
+		  var dots = document.getElementsByClassName("dot");
+		  if (n > slides.length)
+		  {
+			  slideIndex = 1
+		  }   
+		  if (n < 1) 
+		  {
+			  slideIndex = slides.length
+		  }
+		  for (i = 0; i < slides.length; i++)
+		  {
+			  slides[i].style.display = "none";  
+		  }
+		  if (slideIndex > slides.length) 
+		  {
+			  slideIndex = 1
+		  }
+		  for (i = 0; i < dots.length; i++)
+		  {
+			  dots[i].className = dots[i].className.replace(" active", "");
+		  }
+		  slides[slideIndex-1].style.display = "block"; 		 
+		  dots[slideIndex-1].className += " active";
+		}
+		
+		function slideGec()
+		{
+			var j;
+			var slides1 = document.getElementsByClassName("slider");
+			var dots1 = document.getElementsByClassName("dot");
+			for (j = 0; j < slides1.length; j++)
+			{
+				slides1[j].style.display = "none";
+			}
+			slideNumber++;
+			if (slideNumber > slides1.length)
+			{
+				slideNumber = 1
+			}
+			for (i = 0; i < dots1.length; i++)
+			{
+				dots1[i].className = dots1[i].className.replace(" active", "");
+			}
+			slides1[slideNumber-1].style.display = "block";
+			setTimeout(slideGec, 5000);
+			dots1[slideNumber-1].className += " active";
+		}
+    </script>
+</body>
+</html>
