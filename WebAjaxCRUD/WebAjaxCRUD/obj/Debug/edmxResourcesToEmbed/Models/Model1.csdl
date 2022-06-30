@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcAjaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="departmentID" />
+    </Key>
+    <Property Name="departmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="persons" Relationship="Self.FK_persons_department" FromRole="department" ToRole="persons" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="personDep" Type="Int32" />
+    <Property Name="personeDelete" Type="Boolean" />
+    <Property Name="personNumber" Type="Int32" />
+    <NavigationProperty Name="department" Relationship="Self.FK_persons_department" FromRole="persons" ToRole="department" />
+  </EntityType>
+  <Association Name="FK_persons_department">
+    <End Role="department" Type="Self.department" Multiplicity="0..1" />
+    <End Role="persons" Type="Self.person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="department">
+        <PropertyRef Name="departmentID" />
+      </Principal>
+      <Dependent Role="persons">
+        <PropertyRef Name="personDep" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcAjaxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="departments" EntityType="Self.department" />
+    <EntitySet Name="persons" EntityType="Self.person" />
+    <AssociationSet Name="FK_persons_department" Association="Self.FK_persons_department">
+      <End Role="department" EntitySet="departments" />
+      <End Role="persons" EntitySet="persons" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

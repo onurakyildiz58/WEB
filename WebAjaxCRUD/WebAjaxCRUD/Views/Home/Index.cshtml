@@ -1,0 +1,183 @@
+﻿@model  WebAjaxCRUD.Models.PersonViewModel
+@{ 
+    Layout = null;
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="container" style="margin-top:20px">
+    <a href="#" class="btn btn-info" onclick="OgrADD(0)" data-toggle="modal">öğrenci ekle</a><br /><br />
+    
+    <!-- kişleri görüntüleme baş -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Öğrenci ID</th>
+                <th>Öğrenci İsim</th>
+                <th>Öğrenci Soyad</th>
+                <th>Öğrenci Mail</th>
+                <th>Öğrenci Numara</th>
+                <th>Öğrenci Bölüm</th>
+                <th>Güncelle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody id="SetStudentList">
+            <tr id="LoadingStatus"></tr>
+        </tbody>
+    </table>
+    <!-- kişleri görüntüleme son -->
+    
+    <!-- kişleri keydetme popup baş -->
+    <div class="modal fade" id="MyModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 id="ModalTitle"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <fieldset id="SubmitForm">
+                            @Html.HiddenFor(m => m.personID, new { @id = "PerID" })
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.personName, new { @id = "PerName", @class = "form-control", @placeholder = "İsim" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.personSurname, new { @id = "PerSurname", @class = "form-control", @placeholder = "Soyad" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.personMail, new { @id = "PerMail", @class = "form-control", @placeholder = "Mail" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.personNumber, new { @id = "PerNumber", @class = "form-control", @placeholder = "Numara" })
+                            </div>
+                            <div class="form-group">
+                                @Html.DropDownListFor(m => m.personDep, ViewBag.ListOfDepartment as SelectList, "Bölüm Seçiniz", new { @id = "DropDown", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <a href="#" class="btn btn-danger btn-block" id="kaydet">Kaydet</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- kişleri keydetme popup son -->
+    
+    <!-- veri silme baş -->
+    <div class="modal fade" id="deleteUser">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4>Kayıt Silme</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Silmek İstediğinden Emin Misin?</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">İptal</a>
+                    <a href="#" class="btn btn-danger" onclick="onay()">Onayla</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- veri silme son -->
+
+</div>
+
+<script>
+    $("#LoadingStatus").html("yükleniyor....");
+    //veri çekme baş
+    $.get("/Home/GetStudentList", null, DataBind);
+    function DataBind(personList) {
+        var Setdata = $("#SetStudentList")
+        for (var i = 0; i < personList.length; i++) {
+            var data = "<tr class='row_" + personList[i].personID + "'>" +
+                            "<td>" + personList[i].personID + "</td>" +
+                            "<td>" + personList[i].personName + "</td>" + 
+                            "<td>" + personList[i].personSurname + "</td>" +
+                            "<td>" + personList[i].personMail + "</td>" +
+                            "<td>" + personList[i].personNumber + "</td>" +
+                            "<td>" + personList[i].DepartmentName + "</td>" +
+                "<td>" + "<a href='#' class='btn btn-warning' onclick='EditPerson(" + personList[i].personID +")'><span class='glyphicon glyphicon-edit'></span></a>" + "</td>" +
+                "<td>" + "<a href='#' class='btn btn-danger' onclick='DeletePerson(" + personList[i].personID +")'><span class='glyphicon glyphicon-trash'></span></a>" + "</td>" +
+                        "<tr/>";
+            Setdata.append(data);
+            $("#LoadingStatus").html(" ");
+        }
+    }
+    //veri çekme son
+
+    //popup veri kaydetme baş
+    function OgrADD(personID) {
+        $("#form")[0].reset();
+        $("#PerID").val(0);
+        $("#DropDown option:selected").text("Bölüm Seçiniz");
+        $("#ModalTitle").html("Yeni Kişi Ekleme");
+        $("#MyModal").modal();
+    }
+    //popup veri kaydetme son
+
+    //popup veri güncelleme baş
+    function EditPerson(personID) {
+        var url = "/Home/GetStudentByID?personID=" + personID;
+        $("#ModalTitle").html("Seçili Kişiyi Güncelleme");
+        $("#MyModal").modal();
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#PerID").val(obj.personID);
+                $("#PerName").val(obj.personName);
+                $("#PerSurname").val(obj.personSurname);
+                $("#PerMail").val(obj.personMail); 
+                $("#PerNumber").val(obj.personNumber);
+                $("#DropDown option:selected").text(obj.department.departmentName);
+                $("#DropDown option:selected").val(obj.department.personDep);               
+            }
+        })
+
+           
+    }
+    //popup veri güncelleme son
+
+    //kayıt ekleme baş
+    $("#kaydet").click(function () {
+        var data = $("#SubmitForm").serialize();
+        $.ajax({
+            type: "Post",
+            url: "/Home/SaveRecordInDatabase",
+            data: data,
+            success: function (result) {
+                window.location.href = "/Home/index";
+                $("#MyModal").modal("hide");
+            }
+
+        })
+    })  
+    //kayıt ekleme son
+
+    //popup veri silme baş
+    function DeletePerson(personID) {
+        $("#PerID").val(personID);
+        $("#deleteUser").modal("show");
+    }
+    function onay() {
+        var perID = $("#PerID").val();
+        $.ajax({
+            type: "Post",
+            url: "/Home/KayıtSil?personID=" + perID,
+            success: function (result) {
+                $("#deleteUser").modal("hide");
+                $(".row_" + perID).remove();
+            }
+        })
+    }
+    //popup veri silme son
+</script>

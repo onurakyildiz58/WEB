@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MvcAjaxModelStoreContainer" CdmEntityContainer="MvcAjaxEntities">
+    <EntitySetMapping Name="departments">
+      <EntityTypeMapping TypeName="MvcAjaxModel.department">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+          <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="persons">
+      <EntityTypeMapping TypeName="MvcAjaxModel.person">
+        <MappingFragment StoreEntitySet="persons">
+          <ScalarProperty Name="personID" ColumnName="personID" />
+          <ScalarProperty Name="personName" ColumnName="personName" />
+          <ScalarProperty Name="personSurname" ColumnName="personSurname" />
+          <ScalarProperty Name="personMail" ColumnName="personMail" />
+          <ScalarProperty Name="personDep" ColumnName="personDep" />
+          <ScalarProperty Name="personeDelete" ColumnName="personeDelete" />
+          <ScalarProperty Name="personNumber" ColumnName="personNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MvcAjaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departmentName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="persons">
+          <Key>
+            <PropertyRef Name="personID" />
+          </Key>
+          <Property Name="personID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personName" Type="nvarchar" MaxLength="50" />
+          <Property Name="personSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="personMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="personDep" Type="int" />
+          <Property Name="personeDelete" Type="bit" />
+          <Property Name="personNumber" Type="int" />
+        </EntityType>
+        <Association Name="FK_persons_department">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="persons" Type="Self.persons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="persons">
+              <PropertyRef Name="personDep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MvcAjaxModelStoreContainer">
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="persons" EntityType="Self.persons" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_persons_department" Association="Self.FK_persons_department">
+            <End Role="department" EntitySet="department" />
+            <End Role="persons" EntitySet="persons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MvcAjaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="persons" Relationship="Self.FK_persons_department" FromRole="department" ToRole="persons" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="personID" />
+          </Key>
+          <Property Name="personID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personDep" Type="Int32" />
+          <Property Name="personeDelete" Type="Boolean" />
+          <Property Name="personNumber" Type="Int32" />
+          <NavigationProperty Name="department" Relationship="Self.FK_persons_department" FromRole="persons" ToRole="department" />
+        </EntityType>
+        <Association Name="FK_persons_department">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="persons" Type="Self.person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="persons">
+              <PropertyRef Name="personDep" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MvcAjaxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="departments" EntityType="Self.department" />
+          <EntitySet Name="persons" EntityType="Self.person" />
+          <AssociationSet Name="FK_persons_department" Association="Self.FK_persons_department">
+            <End Role="department" EntitySet="departments" />
+            <End Role="persons" EntitySet="persons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MvcAjaxModelStoreContainer" CdmEntityContainer="MvcAjaxEntities">
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="MvcAjaxModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+                <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="persons">
+            <EntityTypeMapping TypeName="MvcAjaxModel.person">
+              <MappingFragment StoreEntitySet="persons">
+                <ScalarProperty Name="personID" ColumnName="personID" />
+                <ScalarProperty Name="personName" ColumnName="personName" />
+                <ScalarProperty Name="personSurname" ColumnName="personSurname" />
+                <ScalarProperty Name="personMail" ColumnName="personMail" />
+                <ScalarProperty Name="personDep" ColumnName="personDep" />
+                <ScalarProperty Name="personeDelete" ColumnName="personeDelete" />
+                <ScalarProperty Name="personNumber" ColumnName="personNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
