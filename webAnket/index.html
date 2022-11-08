@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <a href="#" class="navbar-brand md-0 h1">
+            <img class="d-inline-block align-bottom" src="images/logp.png" width="300" height="50">/Anket
+        </a>
+        <button
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                class="navbar-toggler"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav text-right">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">
+                        Anketler
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="#" class="nav-link">
+                        Anket Oluştur
+                    </a>
+                </li>
+                <li class="nav-item active ">
+                    <a href="#" class="nav-link">
+                        Giriş Yap
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="jusify-content-center" style="margin-top: 200px">
+        <div class="row">
+            <div class="col-md-12 h-100 px-5">
+                <div class="input-group mb-4" style="height: 80px">
+                    <span class="input-group-text" id="soru">Soru</span>
+                    <input type="text" class="form-control" placeholder="Soru" aria-label="Soru" aria-describedby="soru">
+                </div>
+                <div class="input-group justify-content-center">
+                    <div class="col-md-3 form-check mr-2">
+                        <button class="btn btn-ligth" type="button" name="flexRadioDefault" onclick="myFunction1()">Çoktan Seçmeli</button>
+                    </div>
+                    <div class="col-md-3 form-check">
+                        <button class="btn btn-ligth" type="button" name="flexRadioDefault" onclick="myFunction2()">Açıklama</button>
+                    </div>
+                    <div class="form-check ml-2">
+                        <button class="btn btn-ligth" type="button" name="flexRadioDefault" onclick="myFunction3()">Evet/Hayır</button>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-ms-12 col-xs-12">
+                    <div class="row-3">
+                        <!-- soru ekleme kısmı -->
+                        <div class="btn-group col-md-3" id="secmeli">
+                            <div class="container1">
+                                <button class="add_form_field btn btn-primary">Cevap Ekle</button>
+                            </div>
+                        </div>
+                        <!-- çoktan seçmeli end -->
+                        <!-- açıklama -->
+                        <div class="input-group mb-3 my-5" id="acıklamacevap" >
+                            <span class="input-group-text" id="acıkalma">açıklama</span>
+                            <input type="text" class="form-control" placeholder="açıklama" aria-label="açıklama" aria-describedby="acıklama">
+                        </div><br>
+                        <!-- açıklama end -->
+                        <!-- evet/hayır -->
+                        <div id="yesno" >
+                            <div class="form-check ml-2">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="evet">
+                                <label class="form-check-label">Evet</label>
+                            </div>
+                            <div class="form-check ml-3">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="hayır">
+                                <label class="form-check-label">Hayır</label>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- evet/hayır end -->
+                        <div class="">
+                            <input class="btn btn-primary" type="submit" value="Kaydet">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="about">
+        <div class="row p-1" style="box-sizing: border-box">
+            <div class="col-xs-12 col-md-1">
+                <a>soru</a>
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <a>cevap</a>
+            </div>
+            <div class="col-xs-12 col-md-1">
+                <a>soru</a>
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <a>cevap</a>
+            </div>
+            <div class="col-xs-12 col-md-1">
+                <a>soru</a>
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <a>cevap</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function()
+    {
+        var max_fields = 10;
+        var wrapper = $(".container1");
+        var add_button = $(".add_form_field");
+
+        var x = 0;
+        $(add_button).click(function(e)
+        {
+            e.preventDefault();
+            if (x < max_fields)
+            {
+                x++;
+                $(wrapper).append('<div class="row">' +
+                                      '<div class="input-group p-2 container-sm col-md-12">' +
+                                           '<span class="input-group-text col-md-2" id="cevap1">' + x + '</span>' +
+                                           '<input type="text" class="form-control col-md-4" placeholder="Cevap" aria-label="Soru" aria-describedby="cevap1">' +
+                                           '<a href="#" class="delete btn btn-default">Sil</a>' +
+                                      '</div>' +
+                                  '</div>');
+            } else
+            {
+                alert('en fazla 10 tane cevap girebilirsiniz')
+            }
+        });
+        $(wrapper).on("click", ".delete", function(e)
+        {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
+    });
+</script>
+
+<script>
+
+    /*function myFunction1() {
+        document.getElementById("secmeli").style.visibility = "visible";
+        document.getElementById("acıklamacevap").style.visibility = "hidden";
+        document.getElementById("yesno").style.visibility = "hidden";
+    }
+    function myFunction2() {
+        document.getElementById("secmeli").style.visibility = "hidden";
+        document.getElementById("acıklamacevap").style.visibility = "visible";
+        document.getElementById("acıklamacevap").style.pointerEvents = "none";
+        document.getElementById("yesno").style.visibility = "hidden";
+    }
+    function myFunction3() {
+        document.getElementById("secmeli").style.visibility = "hidden";
+        document.getElementById("acıklamacevap").style.visibility = "hidden";
+        document.getElementById("yesno").style.visibility = "visible";
+        document.getElementById("yesno").style.pointerEvents = "none";
+    }*/
+</script>
+
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  const cyrpto = require('cyrpto');
+  const pass = "hello";
+  const hash = cyrpto.createHash('md5').update(pass).digest('hex');
+  console.log(hash);
+
+</script>
