@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>water your plant</title>
+    <style>
+    body{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .progress{
+        background-color: beige;
+        border-radius: 20px;
+        height: 30px;
+        width: 300px;
+    }
+    .progress-done{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: repeating-linear-gradient(to left, #0546e0, #1172f9, #4892f9);
+        box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
+        border-radius: 20px;
+        color: #fff;
+        height: 100%;
+        width: 0;
+        transition: 1s ease 0.3s;
+    }
+    .inputContainer{
+        display: flex;
+        width: 50%;
+        justify-content: space-evenly;
+    }
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+    }
+
+    .button1:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+    </style>
+</head>
+<body>
+
+    <div class="progress">
+        <div class="progress-done">
+        </div>
+    </div>
+   <div class="inputContainer">
+       <input class="input" type="number" onchange="getVal()">
+       <div style="justify-content: center;padding-top: 30px">
+           <button class="button button1">Sulama Butonu</button>
+       </div>
+   </div>
+<script>
+function getVal(){
+    const progress = document.querySelector(".progress-done")
+    const input = document.querySelector(".input").value;
+    let finalValue = parseInt(input);
+    if(finalValue > 100){
+        finalValue = 100;
+        progress.style.width = `${((finalValue / 100)*100)}%`;
+        progress.innerText = `${Math.ceil((finalValue / 100)*100)}%`;
+    }
+    else{
+        progress.style.width = `${((finalValue / 100)*100)}%`;
+        progress.innerText = `${Math.ceil((finalValue / 100)*100)}%`;
+    }
+
+
+}
+</script>
+
+</body>
+</html>
