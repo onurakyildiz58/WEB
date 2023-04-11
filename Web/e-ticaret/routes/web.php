@@ -55,4 +55,5 @@ Route::middleware(['auth'])->group(function (){
     Route::get('cart',                              [CartController::class, 'viewcart']);
     Route::get('wish',                              [WishlistController::class, 'viewwish']);
     Route::get('checkout',                          [CheckoutController::class, 'index']);
+    Route::post('place-order',                      [CheckoutController::class, 'placeorder']);
 });
