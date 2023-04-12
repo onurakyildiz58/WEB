@@ -30,6 +30,7 @@ class CheckoutController extends Controller
     public function placeorder(Request $request)
     {
         $order = new Order();
+        $order->user_id = Auth::id();
         $order->name = $request->input('name');
         $order->lname = $request->input('lname');
         $order->email = $request->input('email');
@@ -53,6 +54,9 @@ class CheckoutController extends Controller
                 'qty' => $item->prod_qty,
                 'price' => $item->product->selling_price,
             ]);
+            $prod = Product::where('id', $item->prod_id)->first();
+            $prod->qty = $prod->qty - $item->prod_qty;
+            $prod->update();
         }
 
         if(Auth::user()->address1 == NULL)
@@ -68,5 +72,9 @@ class CheckoutController extends Controller
             $user->pincode = $request->input('pincode');
             $user->update();
         }
+
+        $cartitems = Cart::where('user_id', Auth::id())->get();
+        Cart::destroy($cartitems);
+        return redirect('/')->with('status', 'Siparişiniz alınmıştır');
     }
 }

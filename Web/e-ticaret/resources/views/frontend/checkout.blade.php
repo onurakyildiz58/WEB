@@ -23,43 +23,43 @@
                             <div class="row checkout-form">
                                 <div class="col-md-6">
                                     <label for="firstname">İsim</label>
-                                    <input type="text" class="form-control" name="name">
+                                    <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="lastname">Soyisim</label>
-                                    <input type="text" class="form-control" name="lname">
+                                    <input type="text" class="form-control" name="lname" value="{{ Auth::user()->lname }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="phone">Telefon Numarası</label>
-                                    <input type="text" class="form-control" name="phone">
+                                    <input type="text" class="form-control" name="phone" value="{{ Auth::user()->phone }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address1">Adres</label>
-                                    <input type="text" class="form-control" name="address1">
+                                    <input type="text" class="form-control" name="address1" value="{{ Auth::user()->address1 }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address2">Adres</label>
-                                    <input type="text" class="form-control" name="address2">
+                                    <input type="text" class="form-control" name="address2" value="{{ Auth::user()->address2 }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address2">Şehir</label>
-                                    <input type="text" class="form-control" name="city">
+                                    <input type="text" class="form-control" name="city" value="{{ Auth::user()->city }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address2">İlçe</label>
-                                    <input type="text" class="form-control" name="state">
+                                    <input type="text" class="form-control" name="state" value="{{ Auth::user()->state }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address2">Ülke</label>
-                                    <input type="text" class="form-control" name="county">
+                                    <input type="text" class="form-control" name="county" value="{{ Auth::user()->county }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address2">Posta Kodu</label>
-                                    <input type="text" class="form-control" name="pincode">
+                                    <input type="text" class="form-control" name="pincode" value="{{ Auth::user()->pincode }}">
                                 </div>
                             </div>
                         </div>
