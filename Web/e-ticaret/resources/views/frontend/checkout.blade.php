@@ -72,11 +72,11 @@
                             <hr>
                             <table class="table table-striped">
                                 <thead>
-                                <tr>
-                                    <td class="tablo">Ürün Adı</td>
-                                    <td class="tablo">Adeti</td>
-                                    <td class="tablo">Fiyatı</td>
-                                </tr>
+                                    <tr>
+                                        <td class="tablo">Ürün Adı</td>
+                                        <td class="tablo">Adeti</td>
+                                        <td class="tablo">Fiyatı</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($cartitems as $item)
@@ -111,6 +111,8 @@
                     </div>
                 </div>
             </div>
+            <input value="{{ $total - $indirim }}" type="hidden" name="total_price">
         </form>
     </div>
+
 @endsection

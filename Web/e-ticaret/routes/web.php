@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\FrontController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,4 +57,6 @@ Route::middleware(['auth'])->group(function (){
     Route::get('wish',                              [WishlistController::class, 'viewwish']);
     Route::get('checkout',                          [CheckoutController::class, 'index']);
     Route::post('place-order',                      [CheckoutController::class, 'placeorder']);
+    Route::get('my-orders',                         [UserController::class, 'index']);
+    Route::get('view_order/{id}',                   [UserController::class, 'viewOrder']);
 });
