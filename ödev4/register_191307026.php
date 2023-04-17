@@ -1,12 +1,11 @@
 <?php
-echo "hocam veritabanı ve tablo oluştururken hata almadım ama ikiniye çalıştırdığımda zaten oluşturulmuş hatası aldım çözemedim yorum satırına aldım ilk kez çalıştırdığınızda lütfen tablo ve veritabanı oluşturma kısımlarının yorum satırını kaldırınız", "<br>";
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db_191307026";
+$db_name = "VT191307026";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password);
 
 // Check connection
 if ($conn->connect_error) {
@@ -14,37 +13,35 @@ if ($conn->connect_error) {
 }
 echo "Bağlantı Başarılı" , "<br>";
 
-/*
 // Create database
-$sql = "CREATE DATABASE db_191307026";
+$sql = "CREATE DATABASE IF NOT EXISTS $db_name";
 if (mysqli_query($conn, $sql)) {
     echo "Veri Tabanı Başarılı Şekilde Oluşturuldu", "<br>";
 } else {
     echo "Veri Tabanı Oluşturulamadı: " . $conn->error , "<br>";
 }
-veritabanını oluşturdum ikince kez çalıştırınca zaten oluşturulduğu için hata alıyorum o yüzden yorum satırı haline getirdim 1 kere çalışması yeterlidir
-*/
 
 // use database
-if (!mysqli_select_db($conn, $dbname)) {
+if (!mysqli_select_db($conn, $db_name)) {
     die("Veritabanı seçim hatası: " . mysqli_error($conn));
 }
 
-/* tabloyu oluşturdum ikince kez çalıştırınca zaten oluşturulduğu için hata alıyorum o yüzden yorum satırı haline getirdim 1 kere çalışması yeterlidir
 // sql to create table
-$sql = "CREATE TABLE Users191307026 (
+$sql = "CREATE TABLE IF NOT EXISTS Users191307026 (
     id INT(2) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     kullanici_adi VARCHAR(20) NOT NULL UNIQUE,
     sifre VARCHAR(20) NOT NULL,
-    telefon VARCHAR(10)
+    telefon VARCHAR(11)
 )";
+
 
 if ($conn->query($sql) === TRUE) {
     echo "Users191307026 tablosu başarılıyla oluşturuldu", "<br>";
 } else {
     echo "Users191307026 tablosu oluşturma başarısız : ". $conn->error, "<br>";
 }
-*/
+
+
 if(isset($_POST['gonder']))
 {
     $name = $_POST['isim'];

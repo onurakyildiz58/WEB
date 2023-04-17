@@ -2,10 +2,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db_191307026";
+$dbname = "VT191307026";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password);
 
 // Check connection
 if ($conn->connect_error) {
@@ -17,10 +17,10 @@ echo "Bağlantı Başarılı" , "<br>";
 if (!mysqli_select_db($conn, $dbname)) {
     die("Veritabanı seçim hatası: " . mysqli_error($conn));
 }
+
 if(isset($_POST['login'])){
     $name = $_POST['isim'];
     $pass = $_POST['sifre'];
-
 }
 if($name != "" and $pass != "")
 {
@@ -34,7 +34,7 @@ if($name != "" and $pass != "")
             echo "<h1>Hoş geldiniz, " . $row['kullanici_adi'] . "!</h1>";
         }
     } else {
-        echo "Hatalı Giriş!!!";
+        echo "<h1>Hatalı Giriş!!!</h1>";
     }
 }
 
