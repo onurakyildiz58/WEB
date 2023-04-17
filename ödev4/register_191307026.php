@@ -50,14 +50,34 @@ if(isset($_POST['gonder']))
 }
 if($name != "" and $pass != "" and $phone != "")
 {
-    $sql = "INSERT INTO users191307026 (kullanici_adi, sifre, telefon)
-    VALUES ('$name', '$pass', '$phone')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully", "<br>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    $sql = "SELECT kullanici_adi FROM users191307026 WHERE kullanici_adi='$name'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0)
+    {
+        while($row = $result->fetch_assoc())
+        {
+            echo "<h1>$name  Kullanıcı adında bi kayıt vardır farklı kullanıcı adı yazınız</h1>";
+        }
     }
+    else
+    {
+        $sql = "INSERT INTO users191307026 (kullanici_adi, sifre, telefon)
+        VALUES ('$name', '$pass', '$phone')";
+
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "Kayıt Başarılı Bi Şekilde Oluşturulmuştur", "<br>";
+        }
+        else
+        {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+}
+else
+{
+    echo "<h1>Lütfen Kullanıcı Bilgilerini Doldurunuz</h1>";
 }
 
 $name = "";
