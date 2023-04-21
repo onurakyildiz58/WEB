@@ -5,11 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FrontendController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Frontend\FrontController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Admin\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +30,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'isAdmin'])->group(function (){
-   Route::get('dashboard',[FrontendController::class, 'index']);
+   Route::get('dashboard',                          [FrontendController::class, 'index']);
 
    Route::get( 'categories',                        [CategoryController::class, 'index']);
    Route::get( 'add_category',                      [CategoryController::class, 'add']);
@@ -43,7 +46,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function (){
    Route::put( 'update-product/{id}',               [ProductController::class, 'update']);
    Route::get( 'delete-prod/{id}',                  [ProductController::class, 'destroy']);
 
+   Route::get('orders',                             [OrderController::class, 'orders']);
+   Route::get('admin/view_order/{id}',              [OrderController::class, 'view']);
+   Route::put('update-order/{id}',                  [OrderController::class, 'updateOrder']);
+   Route::get('order-history',                      [OrderController::class, 'orderHistory']);
+   Route::get('users',                              [DashboardController::class, 'users']);
+   Route::get('view-user/{id}',                     [DashboardController::class, 'viewUser']);
 });
+
 Route::get('/',                                     [FrontController::class, 'index']);
 Route::get('category',                              [FrontController::class, 'category']);
 Route::get('view-category/{slug}',                  [FrontController::class, 'viewcategory']);
