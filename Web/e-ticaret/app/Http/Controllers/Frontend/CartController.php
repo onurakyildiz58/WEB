@@ -54,7 +54,7 @@ class CartController extends Controller
             {
                 $cardItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
                 $cardItem->delete();
-                return response()->json(['status' => ' ürünü sepetinizden silinmiştir']);
+                return response()->json(['status' => 'ürün sepetinizden silinmiştir']);
             }
         }
         else
@@ -77,5 +77,10 @@ class CartController extends Controller
                 //return response()->json(['status' => "Miktar Güncellenmiştir"]);
             }
         }
+    }
+    public function countCartItems()
+    {
+        $count = Cart::where('user_id', Auth::id())->count();
+        return response()->json(['count'=> $count]);
     }
 }

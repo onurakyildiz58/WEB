@@ -50,7 +50,7 @@
                             <div class="col-md-10">
                                 <br>
                                 @if($products->qty > 0 and $products->status == 0)
-                                    <button type="button" class="btn btn-success me-3 float-start ">İstek Listesine Ekle <i class="fas fa-heart"></i></button>
+                                    <button type="button" class="btn btn-success me-3 float-start addToWishListBtn">İstek Listesine Ekle <i class="fas fa-heart"></i></button>
                                     <button type="button" class="btn btn-primary me-3 float-start addToCartBtn">Sepete Ekle <i class="fas fa-cart-shopping"></i></button>
                                 @else
                                     <button type="button" class="btn btn-success me-3 float-start addToWishListBtn">İstek Listesine Ekle <i class="fas fa-heart"></i></button>
@@ -113,6 +113,31 @@
                     },
                     datatype: "dataType",
                     success: function (response){
+                        window.location.reload();
+                        swal(response.status);
+                    }
+                });
+            });
+            $('.addToWishListBtn').click(function (e)
+            {
+                e.preventDefault();
+
+                var product_id = $(this).closest('.product_data').find('.prod_id').val();
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    method: "POST",
+                    url: "/add-to-wishlist",
+                    data: {
+                        'product_id': product_id,
+                    },
+                    datatype: "dataType",
+                    success: function (response){
+                        window.location.reload();
                         swal(response.status);
                     }
                 });

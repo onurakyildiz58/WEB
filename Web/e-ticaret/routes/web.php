@@ -50,6 +50,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function (){
    Route::get('admin/view_order/{id}',              [OrderController::class, 'view']);
    Route::put('update-order/{id}',                  [OrderController::class, 'updateOrder']);
    Route::get('order-history',                      [OrderController::class, 'orderHistory']);
+
    Route::get('users',                              [DashboardController::class, 'users']);
    Route::get('view-user/{id}',                     [DashboardController::class, 'viewUser']);
 });
@@ -58,15 +59,24 @@ Route::get('/',                                     [FrontController::class, 'in
 Route::get('category',                              [FrontController::class, 'category']);
 Route::get('view-category/{slug}',                  [FrontController::class, 'viewcategory']);
 Route::get('view-category/{cate_slug}/{prod_slug}', [FrontController::class, 'viewproduct']);
+
 Route::post('add-to-cart',                          [CartController::class, 'addProduct']);
 Route::post('delete-cart-item',                     [CartController::class, 'deleteCardItem']);
 Route::post('update-cart',                          [CartController::class, 'updatecart']);
+Route::get('load-cart-data',                        [CartController::class, 'countCartItems']);
+
+Route::post('add-to-wishlist',                      [WishlistController::class, 'addWish']);
+Route::post('remove-from-wishlist',                 [WishlistController::class, 'removeWish']);
+Route::get('load-wishlist-data',                    [WishlistController::class, 'countWishListItems']);
 
 Route::middleware(['auth'])->group(function (){
     Route::get('cart',                              [CartController::class, 'viewcart']);
-    Route::get('wish',                              [WishlistController::class, 'viewwish']);
+
+    Route::get('wishlist',                          [WishlistController::class, 'viewwish']);
+
     Route::get('checkout',                          [CheckoutController::class, 'index']);
     Route::post('place-order',                      [CheckoutController::class, 'placeorder']);
+
     Route::get('my-orders',                         [UserController::class, 'index']);
     Route::get('view_order/{id}',                   [UserController::class, 'viewOrder']);
 });

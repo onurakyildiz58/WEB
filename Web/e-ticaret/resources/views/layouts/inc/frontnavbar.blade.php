@@ -13,10 +13,14 @@
                     <a class="nav-link active" aria-current="page" href="{{ url('category') }}">Kategori</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url('cart') }}"><i class="fas fa-cart-shopping"></i></a>
+                    <a class="nav-link active" aria-current="page" href="{{ url('cart') }}"><i class="fas fa-cart-shopping"></i>
+                        <span class="badge badge-pill rounded-circle bg-primary cart-count top-0 start-100 translate-middle" style="font-size: 10px">0</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url('wish') }}"><i class="fa-solid fa-heart"></i></a>
+                    <a class="nav-link active" aria-current="page" href="{{ url('wishlist') }}"><i class="fa-solid fa-heart"></i>
+                        <span class="badge badge-pill rounded-circle bg-primary wishlist-count top-0 start-100 translate-middle" style="font-size: 10px">0</span>
+                    </a>
                 </li>
 
                     @guest
@@ -56,3 +60,39 @@
         </div>
     </div>
 </nav>
+<script>
+    $(document).ready(function (){
+        loadcard();
+        loadWish();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        function loadcard()
+        {
+            $.ajax({
+                method: 'GET',
+                url: '/load-cart-data',
+                success: function (response){
+                    $('.cart-count').html('');
+                    $('.cart-count').html(response.count);
+                    //console.log(response.count);
+                }
+            });
+        }
+        function loadWish()
+        {
+            $.ajax({
+                method: 'GET',
+                url: '/load-wishlist-data',
+                success: function (response){
+                    $('.wishlist-count').html('');
+                    $('.wishlist-count').html(response.count);
+                    //console.log(response.count);
+                }
+            });
+        }
+    })
+
+</script>
