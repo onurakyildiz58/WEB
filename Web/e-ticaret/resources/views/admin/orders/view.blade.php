@@ -5,8 +5,8 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>Sipariş
-                <a class="btn btn-primary float-end" href="{{ url('orders') }}"><i class="fa-solid fa-arrow-left"></i> Gerİ</a>
+            <h4 class="pt-3" style="font-size: 30px">Sipariş
+                <a class="btn btn-primary float-right" href="{{ url('orders') }}"><i class="fa-solid fa-arrow-left"></i> Gerİ</a>
             </h4>
         </div>
         <div class="card-body">
@@ -67,7 +67,7 @@
                                 <option {{ $orders->status == '0' ? 'selected' : '' }} value="0">Onaylanıyor</option>
                                 <option {{ $orders->status == '1' ? 'selected' : '' }} value="1">Onaylandı</option>
                             </select>
-                            <button class="btn btn-primary mt-3 float-end" type="submit">Onayla</button>
+                            <button class="btn btn-primary mt-3 float-right" type="submit">Onayla</button>
                         </form>
                     </div>
                 </div>

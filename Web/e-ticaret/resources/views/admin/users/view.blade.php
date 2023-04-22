@@ -7,10 +7,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>Kullanıcı Detayları
-                <a class="btn btn-primary float-end" href="{{ url('users') }}"><i class="fa-solid fa-arrow-left"></i> Gerİ</a>
-            </h4><hr>
-        </div>
+            <h4 class="pt-3" style="font-size: 30px">Kullanıcı Detayları
+                <a class="btn btn-primary float-right" href="{{ url('users') }}"><i class="fa-solid fa-arrow-left"></i> Gerİ</a>
+            </h4>
+        </div><hr>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">

@@ -7,8 +7,8 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>Tüm Siparişler
-                <a href="{{ url('orders') }}" class="btn btn-danger float-end">Yenİ Sİparİşler</a>
+            <h4 class="pt-3" style="font-size: 30px">Tüm Siparişler
+                <a href="{{ url('orders') }}" class="btn btn-danger float-right">Yenİ Sİparİşler</a>
             </h4>
         </div>
         <div class="card-body">
