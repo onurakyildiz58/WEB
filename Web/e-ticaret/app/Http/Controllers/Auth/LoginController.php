@@ -36,7 +36,7 @@ class LoginController extends Controller
         }
         elseif(Auth::user()->role_as == '0') // Normal or Default User Login
         {
-            return redirect('/')->with('status','giriş başarılı');
+            return redirect('/');
         }
     }
     /**

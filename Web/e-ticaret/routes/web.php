@@ -11,6 +11,8 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\RatingController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Admin\DashboardController;
 
 /*
@@ -79,4 +81,10 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('my-orders',                         [UserController::class, 'index']);
     Route::get('view_order/{id}',                   [UserController::class, 'viewOrder']);
+
+    Route::post('rating',                           [RatingController::class, 'starsRating']);
+    Route::get('addComment/{slug}/user_comments',   [ReviewController::class, 'review']);
+    Route::post('add-review',                       [ReviewController::class, 'addReview']);
+    Route::get('edit-review/{slug}/userreview',     [ReviewController::class, 'editReview']);
+    Route::put('edit-review',                       [ReviewController::class, 'updateReview']);
 });

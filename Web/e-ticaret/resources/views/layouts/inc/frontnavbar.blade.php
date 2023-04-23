@@ -14,12 +14,16 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('cart') }}"><i class="fas fa-cart-shopping"></i>
-                        <span class="badge badge-pill rounded-circle bg-primary cart-count top-0 start-100 translate-middle" style="font-size: 10px">0</span>
+                        @if(Auth::check())
+                            <span class="badge badge-pill rounded-circle bg-primary cart-count top-0 start-100 translate-middle" style="font-size: 10px">0</span>
+                        @endif
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('wishlist') }}"><i class="fa-solid fa-heart"></i>
-                        <span class="badge badge-pill rounded-circle bg-primary wishlist-count top-0 start-100 translate-middle" style="font-size: 10px">0</span>
+                        @if(Auth::check())
+                            <span class="badge badge-pill rounded-circle bg-primary wishlist-count top-0 start-100 translate-middle" style="font-size: 10px">0</span>
+                        @endif
                     </a>
                 </li>
 
