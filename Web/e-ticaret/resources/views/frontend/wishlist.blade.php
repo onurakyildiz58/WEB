@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="card shadow">
+        <div class="card shadow wishlistitem">
             @if($wishlist->count() > 0)
                 <div class="card-body">
                     @foreach($wishlist as $item)
@@ -85,7 +85,7 @@
                 }
             });
         });
-        $('.addToCartBtn').click(function (e)
+        $(document).on('click', '.addToCartBtn', function (e)
         {
             e.preventDefault();
 
@@ -106,11 +106,12 @@
                 },
                 datatype: "dataType",
                 success: function (response){
+                    $('.wishlistitem').load(location.href + ' .wishlistitem');
                     swal(response.status);
                 }
             });
         });
-        $('.remove-wishlist-item').click(function (e)
+        $(document).on('click', '.remove-wishlist-item', function (e)
         {
             e.preventDefault();
 
@@ -129,7 +130,7 @@
                 },
                 datatype: "dataType",
                 success: function (response){
-                    window.location.reload();
+                    $('.wishlistitem').load(location.href + ' .wishlistitem');
                     swal(response.status);
                 }
             });

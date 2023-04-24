@@ -16,6 +16,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $excartitems = Cart::where('user_id', Auth::id())->get();
+        $cartitems = Cart::where('user_id', Auth::id())->get();
         foreach ($excartitems as $item)
         {
             if(!Product::where('id', $item->prod_id)->where('qty', '>=', $item->prod_qty)->where('status', '0')->exists())
@@ -24,7 +25,7 @@ class CheckoutController extends Controller
                 $remove->delete();
             }
         }
-        $cartitems = Cart::where('user_id', Auth::id())->get();
+
         return view('frontend.checkout', compact('cartitems'));
     }
     public function placeorder(Request $request)
@@ -45,7 +46,7 @@ class CheckoutController extends Controller
         $order->tracking_no = 'raven'.rand(1000,9999);
         $order->save();
 
-        $order->id;
+
         $cartitems = Cart::where('user_id', Auth::id())->get();
         foreach ($cartitems as $item)
         {

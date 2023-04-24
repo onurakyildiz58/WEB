@@ -81,6 +81,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('my-orders',                         [UserController::class, 'index']);
     Route::get('view_order/{id}',                   [UserController::class, 'viewOrder']);
+    Route::get('add-money',                         [UserController::class, 'addMoney']);
+    Route::post('save-money',                       [UserController::class, 'saveMoney']);
 
     Route::post('rating',                           [RatingController::class, 'starsRating']);
     Route::get('addComment/{slug}/user_comments',   [ReviewController::class, 'review']);

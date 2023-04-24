@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="card shadow product_data">
+        <div class="card shadow product_data add">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4 border-right w-25">
@@ -187,7 +187,8 @@
                     $('.qty-input').val(value);
                 }
             });
-            $('.addToCartBtn').click(function (e)
+
+            $(document).on('click', '.addToCartBtn', function (e)
             {
                 e.preventDefault();
 
@@ -208,12 +209,14 @@
                     },
                     datatype: "dataType",
                     success: function (response){
-                        window.location.reload();
+                        //window.location.reload();
+                        $('.add').load(location.href + " .add");
                         swal(response.status);
                     }
                 });
             });
-            $('.addToWishListBtn').click(function (e)
+
+            $(document).on('click', '.addToWishListBtn', function (e)
             {
                 e.preventDefault();
 
@@ -232,7 +235,8 @@
                     },
                     datatype: "dataType",
                     success: function (response){
-                        window.location.reload();
+                        //window.location.reload();
+                        $('.add').load(location.href + " .add");
                         swal(response.status);
                     }
                 });

@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="container my-5">
-        <div class="card shadow ">
+        <div class="card shadow cartitems">
             @if($cart->count() > 0)
                 <div class="card-body">
                     @php $total = 0; $total_KDV = 0; $KDV = 0; $indirim = 0@endphp
@@ -76,7 +76,6 @@
         </div>
     </div><br><br><br><br><br>
 @endsection
-
 @section('scripts')
     <script>
         $(document).ready(function ()
@@ -106,7 +105,7 @@
                     $(this).closest('.product_data').find('.qty-input').val(value);
                 }
             });
-            $('.delete-cart-item').click(function (e){
+            $(document).on('click', '.delete-cart-item', function (e){
                 e.preventDefault();
                 var prod_id = $(this).closest('.product_data').find('.prod_id').val();
 
@@ -117,8 +116,8 @@
                         'prod_id': prod_id,
                     },
                     success: function (response){
-                        window.location.reload();
-                        swal("", response.status, "succes");
+                        $('.cartitems').load(location.href + " .cartitems");
+                        swal("", response.status);
                     }
                 });
             });
@@ -126,7 +125,6 @@
                 e.preventDefault();
                 var prod_id = $(this).closest('.product_data').find('.prod_id').val();
                 var prod_qty= $(this).closest('.product_data').find('.qty-input').val();
-
                 $.ajax({
                     method: "POST",
                     url: "update-cart",
