@@ -61,6 +61,8 @@ Route::get('/',                                     [FrontController::class, 'in
 Route::get('category',                              [FrontController::class, 'category']);
 Route::get('view-category/{slug}',                  [FrontController::class, 'viewcategory']);
 Route::get('view-category/{cate_slug}/{prod_slug}', [FrontController::class, 'viewproduct']);
+Route::get('product-list',                          [FrontController::class, 'searchProd']);
+Route::post('search-product',                       [FrontController::class, 'products']);
 
 Route::post('add-to-cart',                          [CartController::class, 'addProduct']);
 Route::post('delete-cart-item',                     [CartController::class, 'deleteCardItem']);
@@ -70,6 +72,7 @@ Route::get('load-cart-data',                        [CartController::class, 'cou
 Route::post('add-to-wishlist',                      [WishlistController::class, 'addWish']);
 Route::post('remove-from-wishlist',                 [WishlistController::class, 'removeWish']);
 Route::get('load-wishlist-data',                    [WishlistController::class, 'countWishListItems']);
+Route::get('load-money',                            [WishlistController::class, 'load_money']);
 
 Route::middleware(['auth'])->group(function (){
     Route::get('cart',                              [CartController::class, 'viewcart']);
@@ -82,7 +85,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('my-orders',                         [UserController::class, 'index']);
     Route::get('view_order/{id}',                   [UserController::class, 'viewOrder']);
     Route::get('add-money',                         [UserController::class, 'addMoney']);
-    Route::post('save-money',                       [UserController::class, 'saveMoney']);
+    Route::post('save_card',                        [WishlistController::class, 'saveCard']);
 
     Route::post('rating',                           [RatingController::class, 'starsRating']);
     Route::get('addComment/{slug}/user_comments',   [ReviewController::class, 'review']);

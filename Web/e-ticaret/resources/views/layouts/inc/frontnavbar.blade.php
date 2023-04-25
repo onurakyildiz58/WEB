@@ -1,14 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Robo Raven</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="{{ url('/') }}" style="padding-right: 75px">Robo Raven</a>
+        <div class="search-bar" style="width: 40%">
+            <form method="POST" action="{{ url('search-product') }}">
+                @csrf
+                <div class="input-group">
+                    <input type="search" class="form-control" id="search-bar" placeholder="Ürün Ara" aria-describedby="basic-addon1" name="keyWord" required>
+                    <button type="submit" class="input-group-text" style="background-color: #eee"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     @if(Auth::check())
-                        <a class="nav-link active" aria-current="page">Bakiye :  TL</a>
+                        <a class="nav-link active" aria-current="page">
+                            Bakiyeniz :
+                            <span class="money-count"></span>
+                            TL
+                        </a>
                     @endif
                 </li>
                 <li class="nav-item">

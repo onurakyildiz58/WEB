@@ -19,13 +19,11 @@ class FrontController extends Controller
         $featured_category = Category::where('popular', '1')->take('15')->get();
         return view('frontend.index', compact('featured_products', 'featured_category'));
     }
-
     public function category()
     {
         $category = Category::where('status', '0')->get();
         return view('frontend.category', compact('category'));
     }
-
     public function viewcategory($slug)
     {
         if(Category::where('slug', $slug)->exists())
@@ -40,7 +38,6 @@ class FrontController extends Controller
         }
 
     }
-
     public function viewproduct($cate_slug, $prod_slug)
     {
         if(Category::where('slug', $cate_slug)->exists())
@@ -70,6 +67,36 @@ class FrontController extends Controller
         else
         {
             return redirect('/')->with('status', 'slug does not exists');
+        }
+    }
+    public function searchProd()
+    {
+        $prods = Product::select('name')->where('status', '0')->get();
+        $data = [];
+        foreach ($prods as $item)
+        {
+            $data[] = $item['name'];
+        }
+        return $data;
+    }
+    public  function products(Request $request)
+    {
+        $searchKeyword = $request->keyWord;
+        if($searchKeyword != "")
+        {
+            $prod_exists = Product::where('name','LIKE' ,"%$searchKeyword%")->first();
+            if ($prod_exists)
+            {
+                return redirect('view-category/'.$prod_exists->category->slug.'/'.$prod_exists->slug);
+            }
+            else
+            {
+                return redirect()->back()->with('status', 'aradığınız ürün maalesef yoktur');
+            }
+        }
+        else
+        {
+            return redirect()->back();
         }
     }
 }

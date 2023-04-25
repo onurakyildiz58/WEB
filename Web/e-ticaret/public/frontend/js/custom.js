@@ -1,6 +1,7 @@
 $(document).ready(function (){
     loadcard();
     loadWish();
+    loadMoney();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -26,7 +27,19 @@ $(document).ready(function (){
             success: function (response){
                 $('.wishlist-count').html('');
                 $('.wishlist-count').html(response.count);
-                //console.log(response.count);
+
+            }
+        });
+    }
+    function loadMoney()
+    {
+        $.ajax({
+            method: 'GET',
+            url: '/load-money',
+            success: function (response){
+                console.log(response.money);
+                $('.money-count').html('');
+                $('.money-count').html(response.money);
             }
         });
     }

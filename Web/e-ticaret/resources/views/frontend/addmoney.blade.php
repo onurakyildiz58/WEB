@@ -189,12 +189,12 @@
                 <div class="card-number-box">################</div>
                 <div class="flexbox">
                     <div class="box">
-                        <div class="card-holder-name">full name</div>
+                        <div class="card-holder-name">İsim Soyisim</div>
                     </div>
                     <div class="box">
                         <div class="expiration">
                             <span class="exp-month">Ay</span>
-                            <span class="exp-year">/Yıl</span>
+                            <span class="exp-year">/ Yıl</span>
                         </div>
                     </div>
                 </div>
@@ -207,22 +207,22 @@
                     <img src="{{ asset('assets/images/visa.png') }}"  alt="">
                 </div>
             </div>
-
         </div>
-        <form action="{{ url('save-money') }}" method="POST"  enctype="multipart/form-data">
+        <form method="POST" action="{{ url('save_card') }}" enctype="multipart/form-data">
             @csrf
+            <p class="text-center">!!Cüzdana en fazla 9999 TL eklenebilir</p>
             <div class="inputBox">
                 <span>Kart Numarası</span>
-                <input type="text" maxlength="16" class="card-number-input">
+                <input type="text" maxlength="16" class="card-number-input" name="card_number">
             </div>
             <div class="inputBox">
                 <span>Kart Üzerindeki Ad Soyad</span>
-                <input type="text" class="card-holder-input">
+                <input type="text" class="card-holder-input" name="card_owner">
             </div>
             <div class="flexbox">
                 <div class="inputBox">
                     <span>Ay</span>
-                    <select name="" id="" class="month-input">
+                    <select name="card_month" class="month-input">
                         <option value="month" selected disabled>Ay</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -240,10 +240,8 @@
                 </div>
                 <div class="inputBox">
                     <span>Yıl</span>
-                    <select name="" id="" class="year-input">
+                    <select name="card_year" class="year-input">
                         <option value="year" selected disabled>Yıl</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
@@ -252,20 +250,21 @@
                         <option value="2028">2028</option>
                         <option value="2029">2029</option>
                         <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
                     </select>
                 </div>
                 <div class="inputBox">
                     <span>ccv</span>
-                    <input type="text" maxlength="4" class="cvv-input">
+                    <input type="text" maxlength="4" class="cvv-input" name="card_cvv">
                 </div>
                 <div class="inputBox">
                     <span>Bakiye</span>
-                    <input type="text" maxlength="4" class="cvv-input" name="money">
+                    <input type="text" maxlength="4" class="cvv-input" name="card_money">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-4 float-end">Bakiye Ekle</button>
         </form>
-
     </div>
 
 @endsection

@@ -5,10 +5,6 @@
 @endsection
 
 @section('content')
-    @foreach($user as $item)
-        {{ $item->money }} para
-    @endforeach
-
     @include('layouts.inc.slider')
 
     <div class="py-5">

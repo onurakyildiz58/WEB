@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\money;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -63,5 +64,41 @@ class WishlistController extends Controller
     {
         $count = Wishlist::where('user_id', Auth::id())->count();
         return response()->json(['count'=> $count]);
+    }
+    public function saveCard(Request $request)
+    {
+        if(money::where('user_id', Auth::id())->where('card_money', '0')->exists())
+        {
+            $money = new money();
+            $money->user_id = Auth::id();
+            $money->card_owner = $request->input('card_owner');
+            $money->card_number = $request->input('card_number');
+            $money->card_month = $request->input('card_month');
+            $money->card_year = $request->input('card_year');
+            $money->card_cvv = $request->input('card_cvv');
+            $money->card_money =  $request->input('card_money');
+            $money->save();
+            return redirect('add-money')->with('status', 'Bakiye başarı ile eklendi');
+        }
+        else
+        {
+            $usermoney = money::where('user_id', Auth::id())->first();
+            $usermoney->card_owner = $request->input('card_owner');
+            $usermoney->card_number = $request->input('card_number');
+            $usermoney->card_month = $request->input('card_month');
+            $usermoney->card_year = $request->input('card_year');
+            $usermoney->card_cvv = $request->input('card_cvv');
+            $usermoney->card_money =  $request->input('card_money') + $usermoney->card_money;
+            $usermoney->update();
+            return redirect('add-money')->with('status', 'Bakiye başarı ile güncellendi');
+        }
+    }
+
+    public function load_money()
+    {
+        $usermoney = money::where('user_id', Auth::id())->first();
+        $money = $usermoney->card_money;
+
+        return response()->json(['money'=> $money]);
     }
 }

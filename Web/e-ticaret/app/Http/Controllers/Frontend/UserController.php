@@ -25,23 +25,4 @@ class UserController extends Controller
     {
         return view('frontend.addmoney');
     }
-    public function saveMoney(Request $request)
-    {
-        if(Auth::user()->money == NULL)
-        {
-            $user = User::where('id', Auth::id())->get();
-            $user->money = $request->input('money');
-            $user->save();
-        }
-        else
-        {
-            $user = User::where('id', Auth::id())->get();
-            $money = $user->money;
-            $user->money = $request->input('money') + $money;
-            $user->update();
-        }
-
-        $user = User::where('id', Auth::id())->where('money', '!=', 'NULL')->first();
-        return view('frontend.index', compact('user'));
-    }
 }
