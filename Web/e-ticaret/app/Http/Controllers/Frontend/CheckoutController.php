@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\money;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -30,6 +31,7 @@ class CheckoutController extends Controller
     }
     public function placeorder(Request $request)
     {
+
         $order = new Order();
         $order->user_id = Auth::id();
         $order->name = $request->input('name');
@@ -42,10 +44,20 @@ class CheckoutController extends Controller
         $order->state = $request->input('state');
         $order->county = $request->input('county');
         $order->pincode = $request->input('pincode');
-        $order->total_price = $request->input('total_price');;
+        $order->total_price = $request->input('total_price');
         $order->tracking_no = 'raven'.rand(1000,9999);
         $order->save();
 
+        $money = money::where('user_id',Auth::id())->first();
+        if($money->card_money < $request->input('total_price'))
+        {
+            $money->card_money = '0';
+        }
+        else
+        {
+            $money->card_money = $money->card_money - $request->input('total_price');
+        }
+        $money->update();
 
         $cartitems = Cart::where('user_id', Auth::id())->get();
         foreach ($cartitems as $item)

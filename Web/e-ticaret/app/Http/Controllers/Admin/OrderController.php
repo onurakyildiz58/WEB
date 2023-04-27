@@ -23,11 +23,11 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->status = $request->input('order_status');
         $order->update();
-        return redirect('orders')->with('status', 'sipariş onaylandı');
+        return redirect('orders')->with('status', 'sipariş güncellendi');
     }
     public function orderHistory()
     {
-        $orders = Order::where('status', '1')->get();
+        $orders = Order::where('status', '>=', '1')->get();
         return view('admin.orders.history', compact('orders'));
     }
 }
