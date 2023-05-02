@@ -24,7 +24,7 @@
                             @method('PUT')
                             <input type="hidden" name="review_id" value="{{ $review->id }}">
                             <textarea class="form-control mb-3" rows="5" name="review" placeholder="Yorum Yazınız">{{ $review->user_review }}</textarea>
-                            <button class="btn btn-success" type="submit">Yorumu Güncelle</button>
+                                <button class="btn btn-success" type="submit">Yorumu Güncelle</button>
                         </form>
                     </div>
                 </div>

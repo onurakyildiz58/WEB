@@ -91,7 +91,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('add-money',                         [UserController::class, 'addMoney']);
     Route::get('my-profil',                         [UserController::class, 'profil']);
     Route::get('update_user',                       [UserController::class, 'updateUserView']);
-    Route::post('update_user_info',                  [UserController::class, 'updateUser']);
+    Route::post('update_user_info',                 [UserController::class, 'updateUser']);
     Route::post('save_card',                        [WishlistController::class, 'saveCard']);
 
     Route::post('rating',                           [RatingController::class, 'starsRating']);

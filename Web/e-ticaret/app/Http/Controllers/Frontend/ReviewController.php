@@ -28,7 +28,6 @@ class ReviewController extends Controller
                 $verified_purchase = Order::where('orders.user_id', Auth::id())->join('order_items', 'orders.id', 'order_items.order_id')->where('order_items.prod_id', $prod_id)->get();
                 return view('frontend.reviews.index' ,compact('prod_check', 'verified_purchase'));
             }
-
         }
         else
         {

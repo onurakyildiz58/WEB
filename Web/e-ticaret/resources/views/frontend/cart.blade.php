@@ -128,7 +128,6 @@
                 $.ajax({
                     method: "POST",
                     url: "update-cart",
-                    url: "update-cart",
                     data: {
                         'prod_id' : prod_id,
                         'prod_qty' : prod_qty,
