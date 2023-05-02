@@ -14,7 +14,13 @@
     left: 52%;
     bottom: 28%;
 }
-
+.reset{
+    position: absolute;
+    cursor: pointer;
+    color: #000000;
+    left: 45%;
+    bottom: 10%;
+}
 .form-select{
     display: block;
     width: 100%;

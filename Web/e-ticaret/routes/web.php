@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\RatingController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,8 @@ Route::post('add-to-wishlist',                      [WishlistController::class, 
 Route::post('remove-from-wishlist',                 [WishlistController::class, 'removeWish']);
 Route::get('load-wishlist-data',                    [WishlistController::class, 'countWishListItems']);
 Route::get('load-money',                            [WishlistController::class, 'load_money']);
+//Route::post('check-email',                           [ForgotPasswordController::class, 'checkEmail']);
+
 
 Route::middleware(['auth'])->group(function (){
     Route::get('cart',                              [CartController::class, 'viewcart']);
@@ -84,7 +87,11 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('my-orders',                         [UserController::class, 'index']);
     Route::get('view_order/{id}',                   [UserController::class, 'viewOrder']);
+    Route::get('delete_order/{id}/{money}',         [UserController::class, 'deleteOrder']);
     Route::get('add-money',                         [UserController::class, 'addMoney']);
+    Route::get('my-profil',                         [UserController::class, 'profil']);
+    Route::get('update_user',                       [UserController::class, 'updateUserView']);
+    Route::post('update_user_info',                  [UserController::class, 'updateUser']);
     Route::post('save_card',                        [WishlistController::class, 'saveCard']);
 
     Route::post('rating',                           [RatingController::class, 'starsRating']);

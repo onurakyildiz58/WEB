@@ -64,11 +64,12 @@
                             @csrf
                             @method('PUT')
                             <select class="form-select" name="order_status">
-                                <option {{ $orders->status == '0' ? 'selected' : '' }} value="0">Onaylanıyor</option>
+                                <option {{ $orders->status == '0' ? 'selected' : '' }} value="0">Beklemede</option>
                                 <option {{ $orders->status == '1' ? 'selected' : '' }} value="1">Onaylandı</option>
-                                <option {{ $orders->status == '2' ? 'selected' : '' }} value="2">Kargo Firmasına İletildi</option>
-                                <option {{ $orders->status == '3' ? 'selected' : '' }} value="3">Dağıtımda</option>
-                                <option {{ $orders->status == '4' ? 'selected' : '' }} value="4">Teslim Edildi</option>
+                                <option {{ $orders->status == '2' ? 'selected' : '' }} value="2">İptal</option>
+                                <option {{ $orders->status == '3' ? 'selected' : '' }} value="3">Kargo Firmasına İletildi</option>
+                                <option {{ $orders->status == '4' ? 'selected' : '' }} value="4">Dağıtımda</option>
+                                <option {{ $orders->status == '5' ? 'selected' : '' }} value="5">Teslim Edildi</option>
                             </select>
                             <button class="btn btn-primary mt-3 float-right" type="submit">Onayla</button>
                         </form>

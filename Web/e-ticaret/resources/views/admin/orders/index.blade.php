@@ -28,7 +28,7 @@
                         <td>{{ date('d/m/Y', strtotime($item->created_at)) }}</td>
                         <td>{{ $item->tracking_no }}</td>
                         <td>{{ $item->total_price }} TL</td>
-                        <td>{{ $item->status == '0' ? 'Onaylanıyor' : 'Onaylandı' }}</td>
+                        <td>{{ $item->status == '0' ? 'Beklemede' : 'Onaylandı' }}</td>
                         <td>
                             <a class="btn btn-primary" href="{{ url('admin/view_order/'.$item->id) }}"><i class="fa-solid fa-magnifying-glass"></i> İncele</a>
                         </td>

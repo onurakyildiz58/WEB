@@ -58,6 +58,9 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('my-profil') }}">
+                                    Profilim
+                                </a>
                                 <a class="dropdown-item" href="{{ url('my-orders') }}">
                                     Siparişlerim
                                 </a>
