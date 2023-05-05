@@ -14,11 +14,6 @@ return new class extends Migration
         Schema::create('money', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('card_owner');
-            $table->string('card_number');
-            $table->string('card_month');
-            $table->string('card_year');
-            $table->string('card_cvv');
             $table->string('card_money')->default('0');
             $table->timestamps();
         });
