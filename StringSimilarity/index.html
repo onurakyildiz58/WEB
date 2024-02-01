@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>String Similarity</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="form-floating m-3">
+                <textarea class="form-control" placeholder="First idea" id="first" style="height: 200px"></textarea>
+                <label for="first" class="ms-2">First idea</label>
+            </div>
+            <div class="form-floating m-3">
+                <textarea class="form-control" placeholder="Second idea" id="second" style="height: 200px"></textarea>
+                <label for="second" class="ms-2">Second idea</label>
+            </div>
+            <div class="form-floatind m-3">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="levenshteinDistance()">Levenshtein
+                            Distance</button>
+                        <p id="lavensthein"></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="jaccardSimilarity()">Jaccard
+                            Similarity</button>
+                        <p id="jaccard"></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="tverskySimilarity()">Tversky
+                            Similarity</button>
+                        <p id="tversky"></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="cosineSimilarity()">Cosine
+                            Similarity</button>
+                        <p id="cosine"></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="ratcliffSimilarity()">Ratcliff-Obershelp
+                            Similarity</button>
+                        <p id="ratcliff"></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="sorensenSimilarity()">Sorensen-Dice
+                            Similarity</button>
+                        <p id="sorensen"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script>
+/********************************************************************************************/
+    function levenshteinDistance() {
+        var str1 = document.getElementById("first").value;
+        var str2 = document.getElementById("second").value;
+
+        const len1 = str1.length;
+        const len2 = str2.length;
+
+        const dp = Array(len1 + 1).fill(null).map(() => Array(len2 + 1).fill(null));
+
+        for (let i = 0; i <= len1; i++) {
+            dp[i][0] = i;
+        }
+
+        for (let j = 0; j <= len2; j++) {
+            dp[0][j] = j;
+        }
+
+        for (let i = 1; i <= len1; i++) {
+            for (let j = 1; j <= len2; j++) {
+                const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+                dp[i][j] = Math.min(
+                    dp[i - 1][j] + 1, // silme
+                    dp[i][j - 1] + 1, // ekleme
+                    dp[i - 1][j - 1] + cost // değiştirme
+                );
+            }
+        }
+
+        document.getElementById("lavensthein").innerHTML = dp[len1][len2];
+    }
+/********************************************************************************************/
+    function jaccardSimilarity() {
+        var str1 = document.getElementById("first").value;
+        var str2 = document.getElementById("second").value;
+
+        const set1 = new Set(str1);
+        const set2 = new Set(str2);
+
+        const intersection = new Set([...set1].filter(x => set2.has(x))).size;
+
+        const union = set1.size + set2.size - intersection;
+
+        const similarity = intersection / union;
+
+        document.getElementById("jaccard").innerHTML = similarity;
+    }
+/********************************************************************************************/
+    function tverskySimilarity() {
+        var str1 = document.getElementById("first").value;
+        var str2 = document.getElementById("second").value;
+
+        const arrA = str1.split('');
+        const arrB = str2.split('');
+
+        const intersection = arrA.filter(char => arrB.includes(char));
+
+        const diffA = arrA.filter(char => !arrB.includes(char));
+        const diffB = arrB.filter(char => !arrA.includes(char));
+
+        const similarity = intersection.length / (intersection.length + 0.5 * diffA.length + 0.5 * diffB.length);
+
+        document.getElementById("tversky").innerHTML = similarity;
+    }
+/********************************************************************************************/
+    function getTermFrequencyVector(str) {
+        const words = str.split(/\s+/);
+        const wordFrequency = {};
+
+        words.forEach(word => {
+            word = word.toLowerCase();
+            wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+        });
+
+        return Object.values(wordFrequency);
+    }
+    function cosineSimilarity() {
+        var str1 = document.getElementById("first").value;
+        var str2 = document.getElementById("second").value;
+
+        const vectorA = getTermFrequencyVector(str1);
+        const vectorB = getTermFrequencyVector(str2);
+
+        const dotProduct = vectorA.reduce((acc, val, index) => acc + val * (vectorB[index] || 0), 0);
+        const magnitudeA = Math.sqrt(vectorA.reduce((acc, val) => acc + val ** 2, 0));
+        const magnitudeB = Math.sqrt(vectorB.reduce((acc, val) => acc + (val || 0) ** 2, 0));
+
+        const similarity = dotProduct / (magnitudeA * magnitudeB);
+
+        document.getElementById("cosine").innerHTML = similarity;
+    }
+/********************************************************************************************/
+    function longestCommonSubsequence(str1, str2) {
+        const matrix = Array.from({ length: str1.length + 1 }, () => Array(str2.length + 1).fill(0));
+
+        for (let i = 1; i <= str1.length; i++) {
+            for (let j = 1; j <= str2.length; j++) {
+                if (str1[i - 1] === str2[j - 1]) {
+                    matrix[i][j] = matrix[i - 1][j - 1] + 1;
+                } else {
+                    matrix[i][j] = Math.max(matrix[i - 1][j], matrix[i][j - 1]);
+                }
+            }
+        }
+
+        return matrix[str1.length][str2.length];
+    }
+    function ratcliffSimilarity() {
+        var str1 = document.getElementById("first").value;
+        var str2 = document.getElementById("second").value;
+
+        const lcsLength = longestCommonSubsequence(str1, str2);
+        const totalLength = str1.length + str2.length;
+
+        const similarity = 2 * lcsLength / totalLength;
+
+        document.getElementById("ratcliff").innerHTML = similarity;
+    }
+/********************************************************************************************/
+    function getCharacterBigrams(str) {
+        const bigrams = [];
+        for (let i = 0; i < str.length - 1; i++) {
+            bigrams.push(str.substring(i, i + 2));
+        }
+        return bigrams;
+    }
+    function sorensenSimilarity() {
+        var str1 = document.getElementById("first").value;
+        var str2 = document.getElementById("second").value;
+
+        const bigrams1 = new Set(getCharacterBigrams(str1));
+        const bigrams2 = new Set(getCharacterBigrams(str2));
+
+        const intersectionSize = [...bigrams1].filter(bigram => bigrams2.has(bigram)).length;
+        const totalSize = bigrams1.size + bigrams2.size;
+
+        const similarity = (2 * intersectionSize) / totalSize;
+
+        document.getElementById("sorensen").innerHTML = similarity;
+    }
+/********************************************************************************************/
+</script>
+</html>
