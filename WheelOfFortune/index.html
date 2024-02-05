@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Şans Çarkı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            height: 100vh;
+            background: #ccc;
+        }
+        .wrapper {
+            width: 90%;
+            max-width: 34.37em;
+            max-height: 90vh;
+            background-color: #ccc;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            padding: 3em;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        #wheel {
+            max-height: inherit;
+            width: inherit;
+            top: 0;
+            padding: 0;
+        }
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        #spin-btn {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            height: 26%;
+            width: 26%;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 0;
+            background: #ccc;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 1.8em;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            border:4px solid #333;
+        }
+        img {
+            position: absolute;
+            width: 4em;
+            top: 45%;
+            right: -8%;
+        }
+        #final-value {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 1.5em;
+            color: #202020;
+            font-weight: 500;
+        }
+        @media screen and (max-width: 768px) {
+            .wrapper {
+                font-size: 12px;
+            }
+
+            img {
+                right: -5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <canvas id="wheel"></canvas>
+            <button id="spin-btn">Spin</button>
+            <img src="spinner-arrow-.svg" alt="spinner-arrow" />
+        </div>
+        <div id="final-value">
+            
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
+    <script>
+        const wheel = document.getElementById("wheel");
+        const spinBtn = document.getElementById("spin-btn");
+        const finalValue = document.getElementById("final-value");
+        
+        const rotationValues = [
+            { minDegree: 0, maxDegree: 45, value: 2 },
+            { minDegree: 46, maxDegree: 90, value: 1 },
+            { minDegree: 91, maxDegree: 135, value: 8 },
+            { minDegree: 136, maxDegree: 180, value: 7 },
+            { minDegree: 181, maxDegree: 225, value: 6 },
+            { minDegree: 226, maxDegree: 270, value: 5 },
+            { minDegree: 271, maxDegree: 315, value: 4 },
+            { minDegree: 316, maxDegree: 359, value: 3 },
+        ];
+
+        const data = [16, 16, 16, 16, 16, 16, 16, 16];
+
+        var pieColors = [
+            "#002e6d",
+            "#34588c",
+            "#002e6d",
+            "#34588c",
+            "#002e6d",
+            "#34588c",
+            "#002e6d",
+            "#34588c"
+        ];
+
+        let myChart = new Chart(wheel, {
+            plugins: [ChartDataLabels],
+            type: "pie",
+            data: {
+                labels: [1, 2, 3, 4, 5, 6, 7, 8],
+                datasets: [
+                    {
+                        backgroundColor: pieColors,
+                        data: data,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                animation: { duration: 0 },
+                plugins: {
+                    tooltip: false,
+                    legend: {
+                        display: false,
+                    },
+                    datalabels: {
+                        color: "#ffffff",
+                        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+                        font: { size: 24 },
+                    },
+                },
+            },
+        });
+        const valueGenerator = (angleValue) => {
+            for (let i of rotationValues) {
+                if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
+                    alert(i.value);
+                    spinBtn.disabled = false;
+                    break;
+                }
+            }
+        };
+
+        let count = 0;
+        let resultValue = 101;
+        spinBtn.addEventListener("click", () => {
+            spinBtn.disabled = true;
+            let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+            let rotationInterval = window.setInterval(() => {
+                myChart.options.rotation = myChart.options.rotation + resultValue;
+                myChart.update();
+                if (myChart.options.rotation >= 360) {
+                    count += 1;
+                    resultValue -= 5;
+                    myChart.options.rotation = 0;
+                } else if (count > 15 && myChart.options.rotation == randomDegree) {
+                    valueGenerator(randomDegree);
+                    clearInterval(rotationInterval);
+                    count = 0;
+                    resultValue = 101;
+                }
+            }, 10);
+        });
+    </script>
+</body>
+
+</html>
