@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Select Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+
+        <div id="form-container">
+            <form id="form-1" class="border rounded p-3 mb-3">
+                <select class="form-select d-block mb-3" id="select-1-a" name="select-1-a">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="One">One</option>
+                    <option value="Two">Two</option>
+                    <option value="Three">Three</option>
+                    <option value="Four">Four</option>
+                    <option value="Five">Five</option>
+                </select>
+                <select class="form-select d-block mb-3" id="select-1-b" name="select-1-b">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="One">One</option>
+                    <option value="Two">Two</option>
+                    <option value="Three">Three</option>
+                </select>
+                <select class="form-select d-block mb-3" id="select-1-c" name="select-1-c">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="One">One</option>
+                    <option value="Two">Two</option>
+                    <option value="Three">Three</option>
+                </select>
+            </form>
+
+
+        </div>
+        <div class="d-flex justify-content-between p-3">
+            <button type="button" class="btn btn-secondary" onclick="generateNewForm()">
+                <i class="bi bi-plus" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-primary" onclick="saveSelections()">Kaydet</button>
+        </div>
+    </div>
+
+    <script>
+        let id = 1;
+        let formCount = 1;
+        let maxAllowedForms = 0;
+
+        window.onload = () => {
+            const firstSelect = document.querySelector("#form-1 select");
+            maxAllowedForms = firstSelect.querySelectorAll("option").length;
+        };
+
+        function generateNewForm() {
+
+            if (formCount >= maxAllowedForms - 1) {
+                alert("Max Quantity.");
+                return;
+            }
+
+            formCount++;
+            id++;
+
+            const formId = `form-${id}`;
+            const formDiv = document.createElement("form");
+            formDiv.id = formId;
+            formDiv.className = "border rounded p-3 mb-3";
+            formDiv.innerHTML = `
+                <button type="button" class="btn btn-danger m-3 float-end" onclick="removeForm(${id})">
+                    <i class="bi bi-trash" aria-hidden="true"></i>
+                </button>
+                <select class="form-select d-block mb-3" id="select-${id}-a" name="select-${id}-a">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="One">One</option>
+                    <option value="Two">Two</option>
+                    <option value="Three">Three</option>
+                    <option value="Four">Four</option>
+                    <option value="Five">Five</option>
+                </select>
+                <select class="form-select d-block mb-3" id="select-${id}-b" name="select-${id}-b">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="One">One</option>
+                    <option value="Two">Two</option>
+                    <option value="Three">Three</option>
+                </select>
+                <select class="form-select d-block mb-3" id="select-${id}-c" name="select-${id}-c">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="One">One</option>
+                    <option value="Two">Two</option>
+                    <option value="Three">Three</option>
+                </select>
+            `;
+            document.getElementById("form-container").appendChild(formDiv);
+        }
+
+
+        function saveSelections() {
+            const forms = document.querySelectorAll("#form-container form");
+            let output = "";
+
+            forms.forEach((form, index) => {
+                const selects = form.querySelectorAll("select");
+                const values = Array.from(selects).map(s => s.value || "Seçilmedi");
+                output += `Form ${index + 1}:\n - ${values.join("\n - ")}\n\n`;
+            });
+
+            alert("Seçilen Değerler:\n\n" + output);
+        }
+
+        function removeForm(id) {
+            var exist = document.getElementById(`form-${id}`);
+            if (exist) {
+                exist.remove();
+                formCount--;
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
