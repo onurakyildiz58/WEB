@@ -12,16 +12,15 @@
 
 <body>
     <div class="container mt-5">
-
         <div id="form-container">
-            <form id="form-1" class="border rounded p-3 mb-3">
-                <select class="form-select d-block mb-3" id="select-1-a" name="select-1-a">
+
+            <div id="card-1" class="form-card border rounded p-3 mb-3">
+                <select class="form-select d-block mb-3" id="select-1-a" name="select-1-a"
+                    onchange="updateSelectOptions()">
                     <option selected disabled>Open this select menu</option>
                     <option value="One">One</option>
                     <option value="Two">Two</option>
                     <option value="Three">Three</option>
-                    <option value="Four">Four</option>
-                    <option value="Five">Five</option>
                 </select>
                 <select class="form-select d-block mb-3" id="select-1-b" name="select-1-b">
                     <option selected disabled>Open this select menu</option>
@@ -35,8 +34,7 @@
                     <option value="Two">Two</option>
                     <option value="Three">Three</option>
                 </select>
-            </form>
-
+            </div>
 
         </div>
         <div class="d-flex justify-content-between p-3">
@@ -53,7 +51,7 @@
         let maxAllowedForms = 0;
 
         window.onload = () => {
-            const firstSelect = document.querySelector("#form-1 select");
+            const firstSelect = document.querySelector("#card-1 select");
             maxAllowedForms = firstSelect.querySelectorAll("option").length;
         };
 
@@ -67,21 +65,19 @@
             formCount++;
             id++;
 
-            const formId = `form-${id}`;
-            const formDiv = document.createElement("form");
+            const formId = `card-${id}`;
+            const formDiv = document.createElement("div");
             formDiv.id = formId;
-            formDiv.className = "border rounded p-3 mb-3";
+            formDiv.className = "form-card border rounded p-3 mb-3";
             formDiv.innerHTML = `
                 <button type="button" class="btn btn-danger m-3 float-end" onclick="removeForm(${id})">
                     <i class="bi bi-trash" aria-hidden="true"></i>
                 </button>
-                <select class="form-select d-block mb-3" id="select-${id}-a" name="select-${id}-a">
+                <select class="form-select d-block mb-3" id="select-${id}-a" name="select-${id}-a" onchange="updateSelectOptions()">
                     <option selected disabled>Open this select menu</option>
                     <option value="One">One</option>
                     <option value="Two">Two</option>
                     <option value="Three">Three</option>
-                    <option value="Four">Four</option>
-                    <option value="Five">Five</option>
                 </select>
                 <select class="form-select d-block mb-3" id="select-${id}-b" name="select-${id}-b">
                     <option selected disabled>Open this select menu</option>
@@ -97,11 +93,12 @@
                 </select>
             `;
             document.getElementById("form-container").appendChild(formDiv);
+            updateSelectOptions();
         }
 
 
         function saveSelections() {
-            const forms = document.querySelectorAll("#form-container form");
+            const forms = document.querySelectorAll(".form-card");
             let output = "";
 
             forms.forEach((form, index) => {
@@ -114,12 +111,34 @@
         }
 
         function removeForm(id) {
-            var exist = document.getElementById(`form-${id}`);
+            var exist = document.getElementById(`card-${id}`);
             if (exist) {
                 exist.remove();
                 formCount--;
             }
         }
+
+        function updateSelectOptions() {
+            const allASelects = document.querySelectorAll('select[id$="-a"]');
+
+            const selectedValues = Array.from(allASelects)
+                .map(sel => sel.value)
+                .filter(val => val !== "" && val !== "Open this select menu");
+
+            allASelects.forEach(select => {
+                const currentValue = select.value;
+
+                Array.from(select.options).forEach(option => {
+                    if (option.disabledByScript) option.disabled = false;
+
+                    if (option.value !== "" && option.value !== currentValue && selectedValues.includes(option.value)) {
+                        option.disabled = true;
+                        option.disabledByScript = true;
+                    }
+                });
+            });
+        }
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
